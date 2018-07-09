@@ -1,0 +1,55 @@
+body
+{
+}
+
+#footer
+{
+    font-size: small;
+    padding-top: 0.5em;
+    border-top: solid 1px black;
+}
+
+.fixme
+{
+    background-color: yellow;
+}
+
+/* Microformat Icons */
+/* XFN Me */
+a[rel=me] { 
+    padding-right: 23px;
+    background: transparent url(/images/icons/xfn-me.png) no-repeat center right;
+}
+
+/* XFN Friends */
+a[rel~=friend] { 
+    padding-right: 23px;
+    background: transparent url(/images/icons/xfn-friend.png) no-repeat center right;
+}
+
+a[rel~=friend][rel~=met] { 
+    padding-right: 28px;
+    background: transparent url(/images/icons/xfn-friend-met.png) no-repeat center right;
+}
+
+/* XFN Colleague */
+a[rel~=colleague] { 
+    padding-right: 23px;
+    background: transparent url(/images/icons/xfn-colleague.png) no-repeat center right;
+}
+
+a[rel~=colleague][rel~=met] { 
+    padding-right: 28px;
+    background: transparent url(/images/icons/xfn-colleague-met.png) no-repeat center right;
+}
+
+/* XFN Sweetheart */
+a[rel~=sweetheart] { 
+    padding-right: 23px;
+    background: transparent url(/images/icons/xfn-sweetheart.png) no-repeat center right;
+}
+
+a[rel~=sweetheart][rel~=met] { 
+   padding-right: 28px;
+   background: transparent url(/images/icons/xfn-sweetheart-met.png) no-repeat center right;
+}
