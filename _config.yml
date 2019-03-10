@@ -2,3 +2,8 @@ name: David Coles
 theme: jekyll-theme-cayman
 title: David Coles
 description: dcoles.net
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jemoji
+  - jekyll-sitemap
