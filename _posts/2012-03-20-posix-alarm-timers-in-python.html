@@ -1,0 +1,18 @@
+---
+layout: post
+title: POSIX Alarm Timers in Python
+date: '2012-03-20T00:59:00.002-07:00'
+author: David Coles
+tags:
+- Linux
+- Suspend
+- Python
+- Alarm Timers
+- ctypes
+- POSIX clocks
+modified_time: '2012-03-20T09:28:39.281-07:00'
+blogger_id: tag:blogger.com,1999:blog-4144304653010663466.post-6816694467020659714
+blogger_orig_url: https://blog.dcoles.net/2012/03/posix-alarm-timers-in-python.html
+---
+
+One of the nifty <a href="http://man7.org/tlpi/api_changes/index.html#Linux-3.0">new features in Linux 3.0</a> is the addition of two new POSIX clocks&nbsp;<span style="font-family: 'Courier New', Courier, monospace;">CLOCK_BOOTTIME_ALARM</span> and <span style="font-family: 'Courier New', Courier, monospace;">CLOCK_REALTIME_ALARM</span>. These clocks behave much like their non _ALARM versions, except they have the interesting property that they will set the alarm on your computer's <a href="http://en.wikipedia.org/wiki/Real-time_clock">RTC</a> so that it will wake from suspend if <a href="http://man7.org/linux/man-pages/man2/timer_create.2.html">used as a timer</a>.<br /><br />Pretty nifty if you want to write an alarm clock applet or want your machine to run some task at regular intervals and then go back to sleep.<br /><br />Feeling&nbsp;adventitious I decided to try this out using <a href="http://python.org/">Python</a> since it seemed like a fun thing to do. Python has the wonderful <a href="http://docs.python.org/library/ctypes.html">ctypes module</a> that allows you to load a shared object and access symbols defined inside. The only real downside with this approach is that, because of the way that most C libraries rely upon&nbsp;pre-processor&nbsp;defines and structures, you have to duplicate these definitions in your Python script. This gets particularly ugly if you start messing with opaque data structures like <span style="font-family: 'Courier New', Courier, monospace;">sigevent</span> -&nbsp;basically&nbsp;you're ruining portability by tying yourself directly to a particular systems implementation of this interface (take a look at <span style="font-family: 'Courier New', Courier, monospace;">/usr/include/bits/siginfo.h</span>). There's a few interesting solutions like <a href="http://morepypy.blogspot.com/2008/03/ctypes-configuration-tool.html">ctypes_configure</a> or writing a C wrapper library that avoids these headers, but I wanted to keep things simple (and see how well ctypes works on a complicated interface).<br /><br />And here it is:<br /><a href="https://gist.github.com/2132527">https://gist.github.com/2132527</a><br /><br />Usage is pretty simple - run this Python script, suspend your machine and after 1 minute your computer should magically wake itself up. Since the POSIX Alarm Timers require the CAP_WAKE_ALARM capability, you'll probably need to run this with <span style="font-family: 'Courier New', Courier, monospace;">sudo</span>.<br /><br />(In theory you should also be able to do something like `<span style="font-family: 'Courier New', Courier, monospace;">setcap cap_wake_alarm=ep alarmtimer.py</span>` but the setcap program doesn't seem to recognise this capability yet).<br /><br /><span style="font-size: large;">References:</span><br /><br /><ul><li><a href="https://lwn.net/Articles/429925/">LWN: Waking systems from suspend</a></li><li><a href="http://pubs.opengroup.org/onlinepubs/9699919799/functions/timer_create.html">SUSv4: timer_create</a></li></ul>
