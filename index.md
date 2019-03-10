@@ -16,4 +16,4 @@ Engineering and Infrastructure* team. [We're also hiring](https://www.playstatio
 
 ---
 
-If you're looking for a blast from the past, see [what this page looked like in 2010](/2010)…
+<small>If you're looking for a blast from the past, see [what this page looked like in 2010](/2010)…</small>
