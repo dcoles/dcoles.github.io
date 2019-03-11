@@ -1,9 +1,27 @@
 name: David Coles
+logo: /images/d.png
+author:
+    twitter: davidcoles
 theme: jekyll-theme-cayman
 title: David Coles
 description: dcoles.net
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /images/d.png
 plugins:
   - jekyll-feed
   - jekyll-redirect-from
+  - jekyll-seo-tag
   - jemoji
   - jekyll-sitemap
+twitter:
+  card: summary
+  username: davidcoles
+social:
+  links:
+    - https://twitter.com/davidcoles
+    - https://github.com/dcoles
+    - https://www.linkedin.com/in/david-coles-b5b05250
+    - https://stackoverflow.com/users/1172350/dcoles
