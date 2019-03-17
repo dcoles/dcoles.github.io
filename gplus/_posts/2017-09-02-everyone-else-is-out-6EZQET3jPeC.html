@@ -1,0 +1,14 @@
+---
+title: "G+: Everyone else is out of the apartment which \u2026"
+date: "2017-09-02 04:32:31-0400"
+modified_time: "2017-09-02 04:32:31-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/6EZQET3jPeC
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-09-02T04:32:31-04:00" title="2017-09-02 04:32:31-04:00">02 Sep 2017</time></header>
+<div class="content">Everyone else is out of the apartment which finally gave me a chance to debug broken IPv6 connectivity. Every time I enabled IPv6 connections would start hanging for 30 seconds then suddenly come good - what looked like a classic PMTU discovery problem. However, for who knows what reason, it turns out my OpenWRT firewall config was dropping ICMPv6 neighbour-advertisement messages...<br><br>Well. Yes, that would do it.<br><br>Thus I would get about 10 seconds of connectivity while the kernel tried to do neighbour discovery then about 30 seconds of &quot;destination unreachable&quot;. This tends to confuse the hell out of Chrome&#39;s &quot;happy eyes&quot; protocol and drives everyone crazy.<br><br><a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23ipv6/posts" >#ipv6</a> <a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23neighbour-discovery/posts" >#neighbour-discovery</a></div></article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 2</div>

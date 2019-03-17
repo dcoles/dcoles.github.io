@@ -1,0 +1,22 @@
+---
+title: "G+: Here's a pretty neat API that was introduced \u2026"
+date: "2014-04-26 22:46:01-0400"
+modified_time: "2014-04-26 22:46:01-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/7XriVP37oUv
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-26T22:46:01-04:00" title="2014-04-26 22:46:01-04:00">26 Apr 2014</time></header>
+<div class="content">Here&#39;s a pretty neat API that was introduced as part of the POSIX.1-2008 spec. What it does is allows you to use the `fopen` family of APIs to interact with strings. The closest thing I can compare it to is Python&#39;s StringIO class.<br><br>The really nice thing about it is it takes away all the hassles of seeking and a whole bunch of &quot;whoops, I just wrote off the end of the buffer&quot; problems. It comes in two forms: `fmemopen` and `open_memstream` (the later dynamically allocating memory as needed).<br><br>Downside is it&#39;s POSIX.1-2008, so not widely implemented on platforms other than those using glibc.<br><br>(Also fun is `fopencookie` which allows you to make your own custom FILE objects - see <a rel="nofollow" target="_blank" href="https://www.gnu.org/software/libc/manual/html_node/Streams-and-Cookies.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://www.gnu.org/software/libc/manual/html_node/Streams-and-Cookies.html</a> ) </div><hr>
+<a href="https://www.gnu.org/software/libc/manual/html_node/String-Streams.html">
+<h2>String Streams - The GNU C Library</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2014-04-27T00:44:28-04:00" title="2014-04-27 00:44:28-04:00">27 Apr 2014</time></header>
+<div class="content">&quot;The closest thing I can compare it to is Python&#39;s StringIO class.&quot;<br>Or C++&#39;s std::stringstream (which is probably what inspired it).</div></article>
+<hr>

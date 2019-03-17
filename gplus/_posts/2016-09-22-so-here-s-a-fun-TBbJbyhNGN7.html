@@ -1,0 +1,52 @@
+---
+title: "G+: So here's a fun problem"
+date: "2016-09-22 00:08:45-0400"
+modified_time: "2016-09-22 00:08:45-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/TBbJbyhNGN7
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-09-22T00:08:45-04:00" title="2016-09-22 00:08:45-04:00">22 Sep 2016</time></header>
+<div class="content">So here&#39;s a fun problem. Given two processes communicating via a pipe, how can you tell if the pipe is full?<br><br>At least on Linux it appears that the best (and what looks like the only) way of doing so querying the number of unread bytes using the FIONREAD ioctl. If you get a value like 65536 (the default pipe capacity since 2.6.11) then it&#39;s full.<br><br>What if it&#39;s not a named pipe? Well then you can use /proc/${pid}/fd/${pipe_fd} to gain access to the pipe between the two processes.</div><hr>
+<a href="https://gist.github.com/dcoles/4b2f347f11fcf88b5f4b446f6d0d67af">
+<h2>fifo_size.py</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 4</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAtSumm_GtZFMQZVopIKe-1O0uhyECR1T50xy6RMw=s64-c" style="border-radius: 50%"><strong><span class="author">Emil Mikulic</span></strong> <time datetime="2016-09-22T00:17:10-04:00" title="2016-09-22 00:17:10-04:00">22 Sep 2016</time></header>
+<div class="content">I&#39;m afraid to ask what happens if you attempt a nonblocking write. </div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-09-22T00:40:32-04:00" title="2016-09-22 00:40:32-04:00">22 Sep 2016</time></header>
+<div class="content">If you attempt a non-blocking write whilst the pipe is full then you get an EAGAIN, though if bigger than PIPE_BUF (4kiB on Linux) and there&#39;s some space then you might just get a partial write. For non-blocking IO it seems you should always expect the worst since it tends to be highly non-standard across differnt Unixes.<br><br></div><hr>
+<a href="http://man7.org/linux/man-pages/man7/pipe.7.html">
+<h2>pipe(7) - Linux manual page</h2>
+<img src="http://man7.org/tlpi/cover/TLPI-front-cover-vsmall.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAtSumm_GtZFMQZVopIKe-1O0uhyECR1T50xy6RMw=s64-c" style="border-radius: 50%"><strong><span class="author">Emil Mikulic</span></strong> <time datetime="2016-09-22T00:42:22-04:00" title="2016-09-22 00:42:22-04:00">22 Sep 2016</time></header>
+<div class="content">Sounds about right. :(</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-09-22T00:52:55-04:00" title="2016-09-22 00:52:55-04:00">22 Sep 2016</time></header>
+<div class="content">Sounds like some other Unixes expose the number of unread bytes via st_size (which would be a heck of a lot easier to check) but probably uncommon enough that it&#39;s not worth implementing (the Linux implementation has to sum all the buffers to work out the size).</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCLtwV0gesz4RTOnje25NG3h_t_Na3W-zTD_iFiCg=s64-c" style="border-radius: 50%"><strong><span class="author">Rae Yip</span></strong> <time datetime="2016-09-22T07:55:02-04:00" title="2016-09-22 07:55:02-04:00">22 Sep 2016</time></header>
+<div class="content">Sheer genius. ;)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAuD-sq89xg3R1iUOnK4rHfyqmn__3BROqS3P2H2w=s64-c" style="border-radius: 50%"><strong><span class="author">Patrick McLean</span></strong> <time datetime="2016-09-23T03:35:10-04:00" title="2016-09-23 03:35:10-04:00">23 Sep 2016</time></header>
+<div class="content">Now I just need to rewrite this in C, add some magic to get it to figure out pids etc, give it some pretty formatting and submit it to util-linux.<br><br>Though someone really should send a PR to the pipe(7) man page to document that ioctl.</div></article>
+<hr>

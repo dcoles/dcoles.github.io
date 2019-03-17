@@ -1,0 +1,23 @@
+---
+title: "G+: Why do implementing FSMs give me such a \u2026"
+date: "2014-05-12 10:35:08-0400"
+modified_time: "2014-05-12 10:35:08-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/4y7Hdanusxu
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-05-12T10:35:08-04:00" title="2014-05-12 10:35:08-04:00">12 May 2014</time></header>
+<div class="content">Why do implementing FSMs give me such a headache?<br><br>In theory, they&#39;re pretty simple: (state, event) → (new_state, output). Great for processing a series of events, but turn absolutely miserable when you have to make them interact with multiple threads or more traditional styles of programming. They really seem to like being their own little worlds where they don&#39;t have deign to interact with the rest of the world.<br><br>I&#39;m sure there&#39;s got to be a better way to interact with them (such as using methods as your events), but it still feels clunky especially if you still want to keep them nice and data-driven. </div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCDsi8qZrpayAoUmdOk547u7YKlE2cpyVymYz1pKM0=s64-c" style="border-radius: 50%"><strong><span class="author">Abdulla Kamar</span></strong> <time datetime="2014-05-12T19:19:24-04:00" title="2014-05-12 19:19:24-04:00">12 May 2014</time></header>
+<div class="content">There was a really nice example of one in David Abraham&#39;s C++ Template Metaprogramming book. It&#39;s been awhile since I read it, but I remember it being quite nice.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-05-12T20:10:18-04:00" title="2014-05-12 20:10:18-04:00">12 May 2014</time></header>
+<div class="content">Thanks Abdulla. Yeah - it definitely feels like you want to hide the low-level details and leave run-time code for doing useful things at runtime. I actually quite liked the GOF example under the State pattern - using classes to define your states and polymorphism to allow transitioning between them (just changing the current &quot;state&quot; object).</div></article>
+<hr>

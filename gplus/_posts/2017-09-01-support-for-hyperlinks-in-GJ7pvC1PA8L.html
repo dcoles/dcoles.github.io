@@ -1,0 +1,18 @@
+---
+title: "G+: Support for hyperlinks in terminal applications is something \u2026"
+date: "2017-09-01 15:02:29-0400"
+modified_time: "2017-09-01 15:02:29-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/GJ7pvC1PA8L
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-09-01T15:02:29-04:00" title="2017-09-01 15:02:29-04:00">01 Sep 2017</time></header>
+<div class="content">Support for hyperlinks in terminal applications is something I&#39;ve been wanting for a very long time. While many terminal emulators support auto-detection of URLs, they rely on screen-scraping to look for anything that appears to be like a URL (this can easily break due to line-wrapping or scrolling).<br><br>The support just recently added to iTerm 3.1.beta.3 and Gnome Terminal 3.25.1 (VTE 0.49.1) means applications can explicitly mark a URL to be shown.<br><br>$ echo -e &#39;\e]8;;<a rel="nofollow" target="_blank" href="http://example.com" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://example.com</a>\aThis is a link\e]8;;\a&#39;<br><br>It would be especially useful to be able to make use of file: and data: URLs as alternate output presentation (e.g for `ls`).<br><br>Egmont Koblinger (egmontkob on github) has put together a useful summary of his work and where it&#39;s supported. <br><br><a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23terminal/posts" >#terminal</a> <a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23url/posts" >#url</a> </div><hr>
+<a href="https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda">
+<h2>Hyperlinks_in_Terminal_Emulators.md</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 3</div>

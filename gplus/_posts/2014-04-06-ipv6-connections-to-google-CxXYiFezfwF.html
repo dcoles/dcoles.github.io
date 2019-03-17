@@ -1,0 +1,63 @@
+---
+title: "G+: IPv6 connections to Google stallingThis has got me \u2026"
+date: "2014-04-06 23:50:00-0400"
+modified_time: "2014-04-06 23:50:00-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/CxXYiFezfwF
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-06T23:50:00-04:00" title="2014-04-06 23:50:00-04:00">06 Apr 2014</time></header>
+<div class="content">IPv6 connections to Google stalling<br><br>This has got me totally flumoxed. I can&#39;t use most Google services since (especially GMail) since they hang during sign-in. Even Search has trouble.<br><br>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name<br>tcp6       0   5678 dcoles-t440s:56614      2404:6800:4004:80c::1002:https ESTABLISHED 29981/google-chrome<br><br>So far the solution has been to switch to Firefox and set &#39;network.dns.disableIPv6=true&#39;.<br><br>Sadly this started happening after I returned to Tokyo from the US (after updating my system to Ubuntu 14.04beta), so not exactly sure what changed.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-06T23:55:28-04:00" title="2014-04-06 23:55:28-04:00">06 Apr 2014</time></header>
+<div class="content">Sounds a little similar to <a rel="nofollow" target="_blank" href="https://bugzilla.redhat.com/show_bug.cgi?id=1069633" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://bugzilla.redhat.com/show_bug.cgi?id=1069633</a></div></article>
+<hr>
+<article>
+<header>
+<img src="" style="border-radius: 50%"><strong><span class="author">Sphericus Spherium</span></strong> <time datetime="2014-04-07T00:40:57-04:00" title="2014-04-07 00:40:57-04:00">07 Apr 2014</time></header>
+<div class="content">IPv6 to google working well here. Plus and Hangouts at least.<br><b>posted via IPv6</b></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-07T01:15:43-04:00" title="2014-04-07 01:15:43-04:00">07 Apr 2014</time></header>
+<div class="content">Yeah. I don&#39;t think it&#39;s a global issue otherwise there&#39;d be much more complaints. So might be something very specific to work&#39;s DHCP6 based architecture.</div></article>
+<hr>
+<article>
+<header>
+<img src="" style="border-radius: 50%"><strong><span class="author">Sphericus Spherium</span></strong> <time datetime="2014-04-07T01:45:00-04:00" title="2014-04-07 01:45:00-04:00">07 Apr 2014</time></header>
+<div class="content">Good luck, hope you guys get it fixed.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAkVyxp8Fr8lF8iDDV3dFhZVqt64mEIMJct6PSVWA=s64-c" style="border-radius: 50%"><strong><span class="author">Jeremy Visser</span></strong> <time datetime="2014-04-07T05:48:47-04:00" title="2014-04-07 05:48:47-04:00">07 Apr 2014</time></header>
+<div class="content">90% of the time I experience random hanging with IPv6, it&#39;s an MTU or TCP MSS issue.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-07T06:28:44-04:00" title="2014-04-07 06:28:44-04:00">07 Apr 2014</time></header>
+<div class="content">Ah. Jackpot. Thanks <span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/103933303525261507105" oid="103933303525261507105" >Jeremy Visser</a></span>, that seems to have done it. Tested with tracepath6 and eventually set it to 1460 (odd number) and can browse again. Now just need to hunt down who&#39;s blocking ICMPv6 messages.</div></article>
+<hr>
+<article>
+<header>
+<img src="" style="border-radius: 50%"><strong><span class="author">Sphericus Spherium</span></strong> <time datetime="2014-04-07T09:45:17-04:00" title="2014-04-07 09:45:17-04:00">07 Apr 2014</time></header>
+<div class="content">David, <a rel="nofollow" target="_blank" href="http://publib.boulder.ibm.com/infocenter/aix/v7r1/index.jsp?topic=%2Fcom.ibm.aix.prftungd%2Fdoc%2Fprftungd%2Ftcp_max_seg_size_tuning.htm" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://publib.boulder.ibm.com/infocenter/aix/v7r1/index.jsp?topic=%2Fcom.ibm.aix.prftungd%2Fdoc%2Fprftungd%2Ftcp_max_seg_size_tuning.htm</a> explains the MSS/MTU issue.<br>Namely,  &quot;Ethernet with a MTU of 1500 would result in a MSS of 1460 after subtracting 20 bytes for IPv4 header and 20 bytes for TCP header.&quot;<br>I suppose the follow on question is, did you set 1460 on the L2, L3 or L4 Layer?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-07T09:58:52-04:00" title="2014-04-07 09:58:52-04:00">07 Apr 2014</time></header>
+<div class="content">Device MTU (so on Ethernet/L2) layer. Hence my confusion since it&#39;s not a MTU I&#39;ve seen before. That would give a MSS of 1420 for TCP over IPv4 (not sure about IPv6 due to the extension headers). Usually PPPoE gives a MTU of 1492, but I&#39;d not encountered one of 1460  (though apparently happens on some PPPoE ISPs). Really I have to find what on earth I&#39;m connected to and more curiously why did it break over the last month! Will have to try a 13.10 live USB to try and rule out the distro upgrade.</div></article>
+<hr>
+<article>
+<header>
+<img src="" style="border-radius: 50%"><strong><span class="author">Sphericus Spherium</span></strong> <time datetime="2014-04-07T10:05:37-04:00" title="2014-04-07 10:05:37-04:00">07 Apr 2014</time></header>
+<div class="content">Well being on Internode, I know that their standard recommendation is L2 MTU of 1492, IP MTU of 1460 and TCP MSS of 1420.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAkVyxp8Fr8lF8iDDV3dFhZVqt64mEIMJct6PSVWA=s64-c" style="border-radius: 50%"><strong><span class="author">Jeremy Visser</span></strong> <time datetime="2014-04-07T18:28:03-04:00" title="2014-04-07 18:28:03-04:00">07 Apr 2014</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/104568121256910495765" oid="104568121256910495765" >David Coles</a></span> The root cause is that the device with the MTU of 1460 is not doing TCP MSS clamping.<br><br>If it’s a Linux box, it’s a one-line change to iptables. (One-line change on Cisco, too.)</div></article>
+<hr>

@@ -10,9 +10,13 @@ Engineering and Infrastructure* team. [We're also hiring](https://www.playstatio
 
 # Blog posts
 
-{% for post in site.posts -%}
+{% for post in site.categories.blog -%}
 - [{{ post.title }}]({{  post.url }})
 {% endfor %}
+
+# Google+ Archive
+
+- [Archive of public Google+ Posts](/gplus)
 
 # Contact
 

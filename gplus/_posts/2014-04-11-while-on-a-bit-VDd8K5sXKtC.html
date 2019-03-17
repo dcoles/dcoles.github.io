@@ -1,0 +1,22 @@
+---
+title: "G+: While on a bit of a cryptography binge \u2026"
+date: "2014-04-11 10:52:48-0400"
+modified_time: "2014-04-11 10:52:48-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/VDd8K5sXKtC
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-11T10:52:48-04:00" title="2014-04-11 10:52:48-04:00">11 Apr 2014</time></header>
+<div class="content">While on a bit of a cryptography binge this week, I did some reading into NaCl (no, not Google Native Client), a crypto library with a bit of a difference. Unlike a all-encompassing toolkit like OpenSSL, NaCl is tiny and very, very clean C code (you might not be surprised by this when I tell you that this is the handicraft of  Daniel J. Bernstein).<br><br>First of all, it&#39;s a library with almost no options. There is one way to do something and it&#39;s &quot;the right way&quot; (a little bit like the Zen of Python actually). This makes the API very small and tight. For example, the stream cypher API is:<br><br>     <a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23include/posts" >#include</a> &quot;crypto_stream.h&quot;<br><br>     const unsigned char k[crypto_stream_KEYBYTES];<br>     const unsigned char n[crypto_stream_NONCEBYTES];<br>     unsigned char m[...]; unsigned long long mlen;  // Message<br>     unsigned char c[...];  // Output<br><br>     crypto_stream_xor(c,m,mlen,n,k);<br><br>Two related projects to come out of this are:<br><br>libsodium (<a rel="nofollow" target="_blank" href="https://github.com/jedisct1/libsodium" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://github.com/jedisct1/libsodium</a>) a &quot;Portableackageable&quot; implementation of NaCl (something a distro or other languages could use) and TweetNaCl (<a rel="nofollow" target="_blank" href="http://tweetnacl.cr.yp.to/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://tweetnacl.cr.yp.to/</a>) an implementation of NaCl using pure C that fits into 100 tweets.<br><br>Sadly, i don&#39;t think this is going to replace OpenSSL any time soon, but it&#39;s well worth a look for both beautiful C APIs and for providing a nice series of higher level crypto abstractions.</div><hr>
+<a href="http://nacl.cr.yp.to/">
+<h2>Introduction</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-04-12T21:52:22-04:00" title="2014-04-12 21:52:22-04:00">12 Apr 2014</time></header>
+<div class="content">Thought you might appreciate that <span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/106295923193781071612" oid="106295923193781071612" >Rae Yip</a></span> </div></article>
+<hr>

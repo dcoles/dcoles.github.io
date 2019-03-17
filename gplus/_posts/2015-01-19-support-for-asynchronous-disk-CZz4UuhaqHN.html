@@ -1,0 +1,32 @@
+---
+title: "G+: Support for asynchronous disk I/O on Unix platforms \u2026"
+date: "2015-01-19 02:51:40-0500"
+modified_time: "2015-01-19 02:51:40-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/CZz4UuhaqHN
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-01-19T02:51:40-05:00" title="2015-01-19 02:51:40-05:00">19 Jan 2015</time></header>
+<div class="content">Support for asynchronous disk I/O on Unix platforms suck. &quot;Ready&quot;-ness based APIs really just don&#39;t work for disk based access. Thus if your after a nice portable option, a thread pool is it.</div><hr>
+<a href="http://blog.libtorrent.org/2012/10/asynchronous-disk-io/">
+<h2> » asynchronous disk I/O</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAtSumm_GtZFMQZVopIKe-1O0uhyECR1T50xy6RMw=s64-c" style="border-radius: 50%"><strong><span class="author">Emil Mikulic</span></strong> <time datetime="2015-01-19T09:18:46-05:00" title="2015-01-19 09:18:46-05:00">19 Jan 2015</time></header>
+<div class="content">I&#39;ve played this game before: <a rel="nofollow" target="_blank" href="https://plus.google.com/104708749502806774663/posts/6EVPAjbGbhc" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://plus.google.com/104708749502806774663/posts/6EVPAjbGbhc</a></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-01-19T13:25:15-05:00" title="2015-01-19 13:25:15-05:00">19 Jan 2015</time></header>
+<div class="content">It&#39;s a real shame - as you pointed out it takes a vast amount of engineering effort for something that seems pretty easy. There&#39;s several different asynchronous/event mechanisms in Linux, but they don&#39;t play well together - there&#39;s no real universal mechanism (for example, I&#39;m still annoyed how hard it is to be notified of something like a child process being terminated). Something like completion ports would be nice for the various types of I/O, but I don&#39;t think that&#39;s the way Linux is going. For specific use-cases there are things like the proposed extension of the splice system call ( <a rel="nofollow" target="_blank" href="http://lwn.net/Articles/567086/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://lwn.net/Articles/567086/</a> - useful if you&#39;re just copying from one file descriptor to another) but nothing universal.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAtSumm_GtZFMQZVopIKe-1O0uhyECR1T50xy6RMw=s64-c" style="border-radius: 50%"><strong><span class="author">Emil Mikulic</span></strong> <time datetime="2015-01-19T18:04:43-05:00" title="2015-01-19 18:04:43-05:00">19 Jan 2015</time></header>
+<div class="content">My takeaway was &quot;do I/O in a thread&quot; which is exactly how [one of the flavors of] AIO is implemented in glibc.</div></article>
+<hr>

@@ -1,0 +1,77 @@
+---
+title: "G+: \"Thou shalt not, in the language of C, \u2026"
+date: "2012-03-22 11:20:09-0400"
+modified_time: "2012-03-22 11:21:06-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/diqCoafzmBC
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-22T11:20:09-04:00" title="2012-03-22 11:20:09-04:00">22 Mar 2012</time></header>
+<div class="content">&quot;Thou shalt not, in the language of C, under any circumstances, on the pain of death, declare or define a function with an empty set of parentheses, for though in the language of C++ it meaneth the same as (void), in C it meaneth (...) which is of meaningless as there be no anchor argument by which the types of the varadic arguments can be expressed, and which misleadeth the compiler into allowing unsavory code and in some cases generate really ugly stuff for varadic handling.&quot;<br>	-hpa<br><br>Here&#39;s a historical C quirk that I didn&#39;t know about (one with all sorts of fun potential side-effects - a function would take any number of parameters). Thankfully this is one place where C++ makes a very sensible decision to deviate from C in that f() meaneth f(void).</div><hr>
+<a href="http://lwn.net/Articles/487493/">
+<h2>Re: [PATCH] x86: Merge x86_32 and x86_64 cpu_idle() [LWN.net]</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-22T11:27:53-04:00" title="2012-03-22 11:27:53-04:00">22 Mar 2012</time></header>
+<div class="content">Both gcc and llvm will allow passing of arguments to a function defined f(), though clang will issue a &quot;warning: too many arguments in call to &#39;f&quot; when you have -Wall enabled. Both will error if it&#39;s f(void).</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-22T11:44:17-04:00" title="2012-03-22 11:44:17-04:00">22 Mar 2012</time></header>
+<div class="content">Yep. It&#39;s a throwback to K&amp;R C, I think, where it was common to just leave off arguments if they were all ints. Remember they had a different syntax for slurping in the arguments after the header (though I can&#39;t really remember it now).<br><br>This is why some time ago I got into the habit of writing int main(void) instead of int main(). Good job C++.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-22T19:45:59-04:00" title="2012-03-22 19:45:59-04:00">22 Mar 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/116704995636598723218" oid="116704995636598723218" >Bruce Cran</a></span> Why? Just so that C programmers aren&#39;t confused? It seems like () is perfectly clear as long as you don&#39;t have C preconceptions. If you do have C preconceptions, the worst you may think is &quot;ugh, this guy forgot to use void&quot; -- there is no actual bugs that could fall out of it. On the other hand, (void) is pretty confusing if a C++ programmer doesn&#39;t understand this wacky rule in C. I would use () unless I was writing C/C++ dual code.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mDqQLbnfRSViIW80g-9eAZeodf-F4-1FROvmFFn=s64-c" style="border-radius: 50%"><strong><span class="author">Torgeir Hagland</span></strong> <time datetime="2012-03-23T02:55:32-04:00" title="2012-03-23 02:55:32-04:00">23 Mar 2012</time></header>
+<div class="content">in all seriousness, people should just stop writing plain C code...</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-23T06:34:46-04:00" title="2012-03-23 06:34:46-04:00">23 Mar 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/116704995636598723218" oid="116704995636598723218" >Bruce Cran</a></span> Heh, I love the footnote on that FAQ: &quot;Actually this f() thing is all you need to know about C++. That andusing those new fangled // comments. Once you know those two things,you can claim to be a C++ expert. Go for it: type those magical &quot;++&quot; marks onyour resumé. Who cares about all that OO stuff — why should you botherchanging the way you think? After all, the really important thingisn&#39;t thinking; it&#39;s typing in function declarations and comments. (Sigh; Iwish nobody actually thought that way.)&quot;<br><br>I think POC (plain old C) has its place. An important sticky point for me is that <i>libraries</i> should be written in C unless there is a damn good reason. C is the &quot;lowest common denominator&quot; for language interchange -- all serious modern languages have a way to talk to C. C++ is much harder to plumb through to a high-level language. So if you are writing a useful library, it is better for it to be written in C <i>unless</i> the whole point of the library is to provide a high-level programming interface in a high-level language. (So for example, Boost is in C++ because the whole point of it is to provide high-level features for C++. OpenGL is written in C because then everything else can interface to it.)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-24T02:35:15-04:00" title="2012-03-24 02:35:15-04:00">24 Mar 2012</time></header>
+<div class="content">Yeah. The C++ FAQ is excellent. I honestly learnt most of my C++ from it (all the tricky - how do I do X and more importantly what <i>not</i> to do).<br><br>C has a an almost beautiful simplicity too it - no name managing, everything has file scoping and relatively close to the machine. It&#39;s hardly perfect - the syntax can be a bit dinky, headers are only slightly better than macros and type system is a bit weak, but it&#39;s still the one true system language. C++ introduces... a lot more complexity which can interact badly if you start combining STL, classes, templates and classic C all at once.<br><br>I&#39;d still love it if C had a simple namespaces feature though.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-24T03:04:53-04:00" title="2012-03-24 03:04:53-04:00">24 Mar 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/116704995636598723218" oid="116704995636598723218" >Bruce Cran</a></span> Sorry. Mixed two thoughts at once. Headers are really just macro code inclusion (to the detriment of compile times) - in many ways the preprocessor is kind a of a weird (though useful) feature of the language.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-24T05:47:47-04:00" title="2012-03-24 05:47:47-04:00">24 Mar 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/104568121256910495765" oid="104568121256910495765" >David Coles</a></span> &quot;no name managing&quot; (do you mean mangling?) ... &quot;I&#39;d still love it if C had a simple namespaces&quot;<br>I think namespaces are part of the reason C++ has to have name mangling. You can&#39;t really have namespaces when you&#39;re programming direct into object files.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-24T14:05:21-04:00" title="2012-03-24 14:05:21-04:00">24 Mar 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/108688191891412975833" oid="108688191891412975833" >Matt Giuca</a></span> A very simple kind of managing such as `foo { int x; }` being equivalent to `int foo_x;`. Sadly that probably still introduces all sorts of issues for when you write `x = 3` did you mean `foo_x` or `x`. C will probably never have function overloading (because of the non-trivial mangling required) but type generic expressions (compile time feature) can be used to get similar features.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-24T21:15:02-04:00" title="2012-03-24 21:15:02-04:00">24 Mar 2012</time></header>
+<div class="content">Yeah that mangling (wait.. you&#39;re still saying &quot;managing&quot;, do you mean mangling or are you referring to something different?) is simple, but still it takes the language out of the &quot;high-level assembly language&quot; category, because the identifiers no longer reflect the names in the object file. I don&#39;t think that would be an appropriate C feature.<br><br>What is &quot;generic expressions&quot;?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-24T23:55:53-04:00" title="2012-03-24 23:55:53-04:00">24 Mar 2012</time></header>
+<div class="content">Mangling is probably the wrong word. Think of it more like syntactic sugar you could implement in the preprocessor. It&#39;s a short way of defining the kind of &quot;libfoo_dofoo()&quot; people tend to do by hand in library interfaces.<br><br>Type-generic expressions &lt;<a rel="nofollow" target="_blank" href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1441.htm" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1441.htm</a>&gt; are a way of defining a macro which uses type to select the correct function at compile time. For example sin(x) would be replaced with sin(x) if x was a double; or sinf(x) if x was a float.<br><br>I also see there&#39;s now some Unicode literals - `char c8 = u8&quot;UTF8&quot;`; char16_t c16 = u&quot;UTF-16&quot;; char32_t c32 = U&quot;UTF-32&quot;`.<br><br>Another nice feature would be cleanup functions (<a rel="nofollow" target="_blank" href="http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization#C_example_using_GCC_extensions" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization#C_example_using_GCC_extensions</a>). Think of them like Python&#39;s with statement. Would be great for mutexes, files and memory allocation - though might be considered a little too &quot;automagical&quot; for C.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-25T20:36:20-04:00" title="2012-03-25 20:36:20-04:00">25 Mar 2012</time></header>
+<div class="content">Yeah, I consider the name mangling thing and cleanup functions to be too automagical for C. The Unicode strings are a fine addition, and I suppose the type-generic expressions are fine since they&#39;re a preprocessor thing.</div></article>
+<hr>

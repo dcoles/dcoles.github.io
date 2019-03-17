@@ -1,0 +1,32 @@
+---
+title: "G+: Interested in knowing how libc works, or what \u2026"
+date: "2013-10-06 12:29:18-0400"
+modified_time: "2013-10-06 12:29:18-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/LvyCWCDTvsx
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-10-06T12:29:18-04:00" title="2013-10-06 12:29:18-04:00">06 Oct 2013</time></header>
+<div class="content">Interested in knowing how libc works, or what happens in your program before main is called? This two-part tutorial takes you through all the magic under the covers (spoiler: it&#39;s just data structures all the way down).</div><hr>
+<a href="https://blogs.oracle.com/ksplice/entry/hello_from_a_libc_free">
+<h2>Hello from a libc-free world! (Part 1) (Ksplice Blog)</h2>
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2013-10-06T19:39:19-04:00" title="2013-10-06 19:39:19-04:00">06 Oct 2013</time></header>
+<div class="content">Reminds me of the time some guy tried to create the worlds smallest executable ELF binary:<br><a rel="nofollow" target="_blank" href="http://www.muppetlabs.com/~breadbox/software/tiny/teensy.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.muppetlabs.com/~breadbox/software/tiny/teensy.html</a><br>45 bytes!<br><br>I also found it really fun from a historical point of view to mess around with DOS executables in an assembler. A .COM program is literally just code; it has no header. DOS just loads it into a fixed point in memory and jumps to it. So you can write a &quot;Hello world&quot; program that is not much longer than the 12 bytes of the string. And there is no libc, only BIOS calls. You compile it with NASM and run it with DOSBox.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-10-06T22:46:51-04:00" title="2013-10-06 22:46:51-04:00">06 Oct 2013</time></header>
+<div class="content">Ah nice. That&#39;s also a really good article on the topic. Love how they start abusing the ELF spec there at the end.<br><br>If you wanted to ditch lib-c, you then have to do your own syscall handling. Calling &quot;int 0x80&quot; is pretty easy on x86, but I think it might not work on x86_64 (the preferred way seems to be calling vsyscall from the Kernel&#39;s VDSO and let it choose the right/fastest syscall mechanism).<br><br>The other bit I&#39;m kind of interested in is what happens when you do SYS_execve - how much of it&#39;s handled by the kernel side and how much is done in userspace (probably need to dig around bionic or musl&#39;s source a bit more).</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2013-10-07T00:13:23-04:00" title="2013-10-07 00:13:23-04:00">07 Oct 2013</time></header>
+<div class="content">&quot;It&#39;s a wonder that Linux will even consent to sneeze on it, much less give it a process ID.&quot;</div></article>
+<hr>

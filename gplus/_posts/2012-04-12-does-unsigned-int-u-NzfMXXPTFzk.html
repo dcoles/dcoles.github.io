@@ -1,0 +1,42 @@
+---
+title: "G+: Does `unsigned int u = UINT_MAX; signed int \u2026"
+date: "2012-04-12 03:29:28-0400"
+modified_time: "2012-04-12 03:29:28-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/NzfMXXPTFzk
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-04-12T03:29:28-04:00" title="2012-04-12 03:29:28-04:00">12 Apr 2012</time></header>
+<div class="content">Does `unsigned int u = UINT_MAX; signed int i = u;` have undefined behaviour in C? I know it&#39;s fine if `u` can fit in `i` and also fine to do the reverse (signed to unsigned behaves like modular arithmetic).<br><br>Now kind of curious to see what happens with bitwise operations. Surely that means logical bitwise operations only make sense using unsigned integers - otherwise you start getting into all sorts of fun with arithmetic shifts and logical operators on negative values.<br><br>I&#39;m sure I recall <span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/108688191891412975833" oid="108688191891412975833" >Matt Giuca</a></span> having a discussion about this (and arithmetic shifting) at some point.<br><br>(The thing that kicked this off was me wondering if <a rel="nofollow" target="_blank" href="http://commandcenter.blogspot.com/2012/04/byte-order-fallacy.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://commandcenter.blogspot.com/2012/04/byte-order-fallacy.html</a> is safe for reading a signed 32-bit integer from a byte stream)</div><hr>
+<a href="http://commandcenter.blogspot.com/2012/04/byte-order-fallacy.html">
+<h2>The byte order fallacy</h2>
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-04-12T04:29:34-04:00" title="2012-04-12 04:29:34-04:00">12 Apr 2012</time></header>
+<div class="content">Yes; behaviour of signed integer overflow is undefined. Unsigned integer overflow is well-defined (truncate the bits). Signed integers are technically not stored in any specific representation (although everybody uses Two&#39;s Complement), so the behaviour of overflow is undefined.<br><br>Bit shift operations are defined in terms of arithmetic. A left shift is defined as multiplication by 2^n, and if it overflows on a signed integer, that is undefined. You raise a good point about logical bitwise operations (&amp;, | and ^). Because of the undefined bit representation, I can&#39;t imagine they would ever be well-defined for signed integers. They probably aren&#39;t, but I would have to check. (There&#39;s a possibility that they may be well defined for positive signed integers.)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-04-12T13:01:09-04:00" title="2012-04-12 13:01:09-04:00">12 Apr 2012</time></header>
+<div class="content">I guess the correct way of handling signed to unsigned is something like this:<br><br>uint8_t u = 255;<br>int8_t i;<br>if (u &gt; INT8_MAX) {<br>    // Assume 2s compliment<br>    i = -2*(INT8_MAX+1) + u;<br>} else {<br>    // Unsigned value fits in signed one<br>    i = u;<br>}</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-04-12T22:59:48-04:00" title="2012-04-12 22:59:48-04:00">12 Apr 2012</time></header>
+<div class="content">Why are you doing that? What does &quot;// Assume 2s compliment&quot; mean? If you assume the hardware is 2s complement, then you can just assign and it will be converted. (Technically undefined, but if you are making that assumption, then it will work.)<br><br>If you are manually turning it into the number it would be if it was using 2&#39;s complement, then ... what is the point of having it in that representation? Basically, if you want to be able to do bit-level things on it, you should keep it unsigned. If you want it to be arithmetic, then the fact that the large positive number turned negative is meaningless anyway.<br><br>From my point of view, if you really want to convert unsigned to signed in a meaningful way, you should be making an error if it is &gt; INT8_MAX. Or better still, just don&#39;t use unsigned. Never use unsigned int unless it represents some data that will never need to be compatible with a signed int ever.<br><br>In other words, it is okay to use unsigned int for an array index, because all array indexes are positive. But you should not use unsigned int for a width or height -- even though widths and heights cannot be negative, they are frequently used in arithmetic operations with signed ints, so they must be signed quanities.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-04-13T01:18:50-04:00" title="2012-04-13 01:18:50-04:00">13 Apr 2012</time></header>
+<div class="content">In this case I was trying to do construct a 2&#39;s complement integer (such as one you might read byte-by-byte from a network buffer) with bitwise operations (hence why initially storing it in an unsigned int) and then turn it into the corresponding C integer type without risking &quot;undefined behaviour&quot;.<br><br>Having a chat with our resident C/C++ expert at work, the conclusion was that while technically undefined, it just copies the bits directly across, and that there are virtually no systems that use anything but 2&#39;s complement to represent signed integers.<br><br>Basically mixed mode arithmetic is fraught with problems. Avoid it if you can, but if you must do it, you want to explicitly cast them to the same types before arithmetic, rather than letting C&#39;s rules do something you might not expect.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-04-14T00:23:31-04:00" title="2012-04-14 00:23:31-04:00">14 Apr 2012</time></header>
+<div class="content">Oh so you were assuming that someone gave you an unsigned int with the bit pattern of a two&#39;s complement integer, and you were then converting it into a machine-independent int value without undefined behaviour. Yeah, I guess that works. And I guess if you want to be strictly correct, you have to do something like that.<br><br>Looking at the code -- it seems like it will work for 8-bit ints, but only because the calculations are done as normal ints which don&#39;t overflow. If you apply that technique to normal ints (remove the 8_ts), your algorithm overflows.<br><br>First, &quot;u &gt; INT_MAX&quot; will technically work because INT_MAX is a macro, but it kind of is a signed/unsigned comparison. So I&#39;d use &quot;u &gt; (unsigned int) INT_MAX&quot;.<br><br>Second, &quot;-2*(INT_MAX+1) + u&quot; overflows a few times! First, INT_MAX + 1 overflows an int, then -2* makes it way too small. It &quot;happens&quot; to give the right answer because the machine int is two&#39;s complement.<br><br>The best strictly correct solution I have is &quot;(int) (u - INT_MAX - 1) - INT_MAX - 1&quot;. It converts to a signed int at precisely the right time -- it subtracts INT_MAX+1 to bring the number into the positive signed int range (valid as both a signed and unsigned int), then casts to signed, then subtracts INT_MAX+1 again to make it negative. Interestingly, a smart compiler could make this a noop, because it subtracts exactly 2^32.<br><br>But yeah, I kind of agree with your C++ guy -- it&#39;s probably not worth it, given that you can likely assume that all machines represent int in two&#39;s complement.</div></article>
+<hr>

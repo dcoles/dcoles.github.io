@@ -1,0 +1,44 @@
+---
+title: "G+: Perl 6 has strong support for Unicode"
+date: "2015-12-09 13:00:55-0500"
+modified_time: "2015-12-09 13:00:55-0500"
+image: https://s0.wp.com/i/blank.jpg
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/8aauTZGkJ9X
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-12-09T13:00:55-05:00" title="2015-12-09 13:00:55-05:00">09 Dec 2015</time></header>
+<div class="content">Perl 6 has strong support for Unicode. In particular, it&#39;s one of the few languages that presents Unicode strings as a sequence of graphemes rather than code points. There&#39;s also some funky mathematical notation, which may seem strange in the ASCII-centric parts of the world, could be plausibly used by those who use an IME on a day to day basis.<br><br>One fun fact I learnt: In Unicode, \r\n is a single grapheme.</div><hr>
+<a href="https://perl6advent.wordpress.com/2015/12/07/day-7-unicode-perl-6-and-you">
+<h2>Day 7 — Unicode, Perl 6, and You</h2>
+<img src="https://s0.wp.com/i/blank.jpg" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-12-09T13:03:18-05:00" title="2015-12-09 13:03:18-05:00">09 Dec 2015</time></header>
+<div class="content">Also good reading on the topic is <span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/108688191891412975833" oid="108688191891412975833" >Matt Giuca</a></span> &#39;s post on The importance of language-level abstract Unicode strings: <a rel="nofollow" target="_blank" href="https://unspecified.wordpress.com/2012/04/19/the-importance-of-language-level-abstract-unicode-strings/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://unspecified.wordpress.com/2012/04/19/the-importance-of-language-level-abstract-unicode-strings/</a></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-12-09T13:22:24-05:00" title="2015-12-09 13:22:24-05:00">09 Dec 2015</time></header>
+<div class="content">Swift also has fairly modern Unicode support, where each Character in a string is a single Extended Grapheme Cluster.<br><a rel="nofollow" target="_blank" href="https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID293" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://developer.apple.com/library/prerelease/ios/documentation/Swift/Conceptual/Swift_Programming_Language/StringsAndCharacters.html#//apple_ref/doc/uid/TP40014097-CH7-ID293</a></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2015-12-09T16:43:17-05:00" title="2015-12-09 16:43:17-05:00">09 Dec 2015</time></header>
+<div class="content">Heh, that is cool. In my blog post I make a couple of arguments against counting graphemes (see &quot;What about combining characters?&quot;), although I wasn&#39;t arguing particularly strongly against it.<br><br>It&#39;s good that Perl 6 seems to count graphemes by default but also offer access to codepoints. That seems ideal. Still, I wonder about performance --- do you have constant time access to graphemes? (In which case, strings would need to be stored as a list of pointers to arrays of codepoints.)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-12-10T00:33:42-05:00" title="2015-12-10 00:33:42-05:00">10 Dec 2015</time></header>
+<div class="content">Taking a look at <a rel="nofollow" target="_blank" href="http://design.perl6.org/S15.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://design.perl6.org/S15.html</a> it appears that Perl stores characters in a special NFG (Normalization Form Grapheme) form. It&#39;s like NFC form where graphemes are compressed into pre-composed forms, but also maps other graphemes to an internal representation. That way you can look up graphemes quickly, but may need to decompose them if you want the actual code-points.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2015-12-10T18:38:56-05:00" title="2015-12-10 18:38:56-05:00">10 Dec 2015</time></header>
+<div class="content">I&#39;ll have a look later. The first thought that comes to mind (without reading) is that graphemes can be comprised of arbitrarily many code points.</div></article>
+<hr>

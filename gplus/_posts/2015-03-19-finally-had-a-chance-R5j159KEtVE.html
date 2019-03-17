@@ -1,0 +1,18 @@
+---
+title: "G+: Finally had a chance to play around with \u2026"
+date: "2015-03-19 02:11:39-0400"
+modified_time: "2015-03-19 02:11:39-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/R5j159KEtVE
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2015-03-19T02:11:39-04:00" title="2015-03-19 02:11:39-04:00">19 Mar 2015</time></header>
+<div class="content">Finally had a chance to play around with Linux BPF socket filtering today. I was interesting in seeing if it was possible to have two separate processes listening on the same UDP port but have them handle different connections based on the UDP payload.<br><br>Recently Linux learned the SO_REUSEPORT option (see <a rel="nofollow" target="_blank" href="http://lwn.net/Articles/542629/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://lwn.net/Articles/542629/</a> ) which in theory should allow load-balancing of connections between processes in this manner but alas, it seems like all my connections are handled by the most recently run process.<br><br>(I&#39;m also worried that the BPF filtering behavior may be to not just reject the packet from this socket, but to drop the packet from the system entirely, but I figure I need to get the load balancing case working first)</div><hr>
+<a href="https://github.com/dcoles/experiments/tree/master/bpf">
+<h2>experiments/bpf at master · dcoles/experiments · GitHub</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div>

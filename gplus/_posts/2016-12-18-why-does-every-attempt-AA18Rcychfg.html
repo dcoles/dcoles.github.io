@@ -1,0 +1,23 @@
+---
+title: "G+: Why does every attempt to fix Windows/GRUB boot \u2026"
+date: "2016-12-18 16:55:00-0500"
+modified_time: "2016-12-18 16:55:00-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/AA18Rcychfg
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-12-18T16:55:00-05:00" title="2016-12-18 16:55:00-05:00">18 Dec 2016</time></header>
+<div class="content">Why does every attempt to fix Windows/GRUB boot issues inevitably end up with me running `dd if=/dev/zero of=/dev/sda bs=446 count=1`...<br><br>This time Windows was convinced I&#39;d installed it using EFI so wouldn&#39;t let me access the MBR repair tools (probably because GRUB2 was using EFI and chain-booting to Windows?). So to fix it I needed to reconnect the DVD drive that&#39;s been disconnected for 12 months, nuke the MBR using SystemRescueCd, boot into Windows recovery and bootrec.exe /alltheflags.<br><br>I&#39;m glad I didn&#39;t go with my gut feeling of bs=512 (despite making a backup) which also would have wiped the whole MBR, including partition table.</div></article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAkVyxp8Fr8lF8iDDV3dFhZVqt64mEIMJct6PSVWA=s64-c" style="border-radius: 50%"><strong><span class="author">Jeremy Visser</span></strong> <time datetime="2016-12-18T19:18:16-05:00" title="2016-12-18 19:18:16-05:00">18 Dec 2016</time></header>
+<div class="content">Wow, all these years I thought the bootstrap code was 448 bytes, not 446. Considering I never broke anything, I clearly got lucky all those times.<br><br>TIL.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-12-18T20:15:18-05:00" title="2016-12-18 20:15:18-05:00">18 Dec 2016</time></header>
+<div class="content">I did a double-take when I saw the 446 too. There&#39;s a few places online that use 448, which I can only guess is due to people thinking 64 bytes for partitions but neglecting the 2-byte signature.</div></article>
+<hr>

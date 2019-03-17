@@ -1,0 +1,53 @@
+---
+title: "G+: So here's a challenge"
+date: "2014-08-02 14:08:09-0400"
+modified_time: "2014-08-02 14:08:09-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/NdpEeYdP6dQ
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-02T14:08:09-04:00" title="2014-08-02 14:08:09-04:00">02 Aug 2014</time></header>
+<div class="content">So here&#39;s a challenge. Given a bitarray represented by a Python integer (e.g 0x12345678) work what it&#39;s two&#39;s complement value is (assuming a 32-bit bitarray).<br><br>e.g. 0x00000001 =&gt; 1 <br>0xffffffff =&gt; -1<br>0x00000001 =&gt; -2<br>0x7fffffff =&gt; 2147483647<br>0x80000000 &gt; -2147483648<br><br>Despite all of Python&#39;s integers being based on 2s complement form, it turns out to be surprisingly tricky.<br><br>One hack is just to use ctypes.c_int32(0x12345678).value, but this feels a little dishonest.<br><br>I worked out a way using `value |= (-1 ^ 0xffffffff)` to sign-extend when the high-bit is set, but it&#39;s still pretty long and clunky and relies on a conditional statement.</div></article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2014-08-02T20:15:20-04:00" title="2014-08-02 20:15:20-04:00">02 Aug 2014</time></header>
+<div class="content">Using ctypes is technically system dependent (can&#39;t guarantee two&#39;s complement), so I like the direction of your final solution more. Note that in the other branch of your condition, you need to &amp; it with 0x7fffffff.<br><br>Here&#39;s a decent solution which doesn&#39;t have a condition:<br><br>value = -(value &amp; 0x80000000) | (value &amp; 0x7fffffff)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-02T22:09:37-04:00" title="2014-08-02 22:09:37-04:00">02 Aug 2014</time></header>
+<div class="content">Yup. That&#39;s what really urked me about it. My &quot;safe solution&quot; ended up using the struct module to convert to a bytestring with &quot;&gt;I&quot; and then back again with &quot;&gt;i&quot;.<br><br>I think I can get away without the mask since we&#39;ve already tested that the high-bit is 1, but you do need something to strip off any sign bit.<br><br>Your solution definitely feels much cleaner, I guess &quot;the trick&quot; being it uses the identity -0x80000000 = 0x80000000 (assuming 32-bit bitarrays). Then it&#39;s just nice bit-wise operations.<br><br>I&#39;m actually surprised how sensible Python&#39;s bitwise operations are, even though they&#39;re done using signed integers. Sure there&#39;s a few gotchas (e.g. needing to mask off the sign-bit), but on the whole &quot;infinite bits&quot; integer representation is quite nice.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-02T23:15:08-04:00" title="2014-08-02 23:15:08-04:00">02 Aug 2014</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/108688191891412975833" oid="108688191891412975833" >Matt Giuca</a></span> You might want to add your answer to <a rel="nofollow" target="_blank" href="https://stackoverflow.com/questions/1375897/how-to-get-the-signed-integer-value-of-a-long-in-python" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://stackoverflow.com/questions/1375897/how-to-get-the-signed-integer-value-of-a-long-in-python</a> . I&#39;d certainly give it a +1 over the current answers.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2014-08-02T23:53:12-04:00" title="2014-08-02 23:53:12-04:00">02 Aug 2014</time></header>
+<div class="content">&quot;I guess &quot;the trick&quot; being it uses the identity -0x80000000 = 0x80000000 (assuming 32-bit bitarrays).&quot;<br><br>That&#39;s not really it.<br><br>The trick is that for any value x with a single 1 bit, -x is a sign extension of x. For example -0x00008000 = 0xffff8000.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-03T00:36:37-04:00" title="2014-08-03 00:36:37-04:00">03 Aug 2014</time></header>
+<div class="content">That&#39;s a much better way of putting it (I didn&#39;t mean trick in the negative sense, just &quot;the tricky part&quot; I couldn&#39;t get my head around). At a low level the &quot;-&quot; operator just flips all the bits and then adds 1, so for one-bit set values the set bit becomes the only unset bit, but the add 1 step bubbles up to set this bit again, while also clearing all the lower bits, right?<br><br>Usually when really stuck, I go and take a look at <a rel="nofollow" target="_blank" href="https://graphics.stanford.edu/~seander/bithacks.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://graphics.stanford.edu/~seander/bithacks.html</a>, but I can&#39;t find this version here. I guess it&#39;s because it takes advantage of Python&#39;s &quot;bit operations are treated as 2s complement representation&quot; behavior (technically would be undefined behavior in C).<br><br>For arbitrary number of bits:<br><br>    # b: Number of bits<br>    lambda value, b: -(value &amp; (1&lt;&lt;(b-1))) | (value &amp; ((1&lt;&lt;(b-1)) - 1))<br><br>Seems like lots of people find this tricky: <a rel="nofollow" target="_blank" href="https://stackoverflow.com/questions/1604464/twos-complement-in-python" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://stackoverflow.com/questions/1604464/twos-complement-in-python</a></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-03T00:47:16-04:00" title="2014-08-03 00:47:16-04:00">03 Aug 2014</time></header>
+<div class="content">If you&#39;re wondering why I&#39;m trying to do this, it&#39;s to deal with horrible Microsoft HRESULT style error codes (e.g. ones that look like 0x80000001 but stored in a signed int).<br><br>All sorts of platform specific assumptions (platform uses 32-bit ints, platform uses 2s complement representation, etc.). To Microsoft&#39;s credit, they do try and hide this with lots of typedefs and macros (e.g. FAILED, IS_ERROR), but I&#39;m sure many people expect to be able to test errors by checking for a negative value.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2014-08-03T06:50:38-04:00" title="2014-08-03 06:50:38-04:00">03 Aug 2014</time></header>
+<div class="content">Maybe it would be best to just treat as a signed int and say &gt;=0x80000000 is an error?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-08-03T07:14:30-04:00" title="2014-08-03 07:14:30-04:00">03 Aug 2014</time></header>
+<div class="content">That was my original plan, but it breaks if people try and use the -12345 form and felt it&#39;s nicer to match what I&#39;d get if I called said C API directly via ctypes (currently get error as a hexstring from another component on another host).</div></article>
+<hr>

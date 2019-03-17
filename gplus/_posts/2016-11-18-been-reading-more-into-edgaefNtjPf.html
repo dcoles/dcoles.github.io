@@ -1,0 +1,39 @@
+---
+title: "G+: Been reading more into how the Windows Subsystem \u2026"
+date: "2016-11-18 11:22:00-0500"
+modified_time: "2016-11-18 11:22:00-0500"
+image: http://www.theregister.co.uk/Design/graphics/icons/columnist_blank.png
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/edgaefNtjPf
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-11-18T11:22:00-05:00" title="2016-11-18 11:22:00-05:00">18 Nov 2016</time></header>
+<div class="content">Been reading more into how the Windows Subsystem for Linux works[1] and how Pico processes from Project Drawbridge[2] are used to host Linux binaries on a Windows NT kernel.<br><br>The original intent of Pico processes was to reduce the Windows syscall API down to a new set of 45 syscalls (closer to that of a VM) and then implement the vast majority of traditional Win32 and WinNT calls in a user-mode NT kernel called NTUM.<br><br>This made me wonder - 45 low-level syscalls are much easier to implement on another platform than the full 1000+ Windows APIs - has anyone tried porting them to Linux? Oh look! Microsoft just announced SQL Server for Linux. And the binary makes reference to Drawbridge and libos. Hmmm.... :&#39;)<br><br>1. <a rel="nofollow" target="_blank" href="https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/</a><br>2. <a rel="nofollow" target="_blank" href="https://www.microsoft.com/en-us/research/project/drawbridge/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://www.microsoft.com/en-us/research/project/drawbridge/</a></div><hr>
+<a href="http://www.theregister.co.uk/2016/11/18/microsoft_running_windows_apps_on_linux/">
+<h2>Microsoft ❤️ Linux? Microsoft ❤️ running its Windows' SQL Server software on Linux</h2>
+<img src="http://www.theregister.co.uk/Design/graphics/icons/columnist_blank.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-11-18T11:24:38-05:00" title="2016-11-18 11:24:38-05:00">18 Nov 2016</time></header>
+<div class="content">Looks like folks are already having fun pulling the pieces apart: <a rel="nofollow" target="_blank" href="https://twitter.com/h0x0d/status/799513721890570240" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://twitter.com/h0x0d/status/799513721890570240</a><br></div><hr>
+<a href="https://twitter.com/h0x0d/status/799513721890570240">
+<h2>WalkingCat on Twitter: "Drawbridge = PicoProcess + LibraryOS / ABI PAL  Pico => WSL, LibOS => SQL for Linux, bravo @MSFTResearch @igalenhunt"</h2>
+<img src="https://pbs.twimg.com/profile_images/2346386083/nry1cnewlr20qyfy79ei_reasonably_small.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2016-12-18T13:25:56-05:00" title="2016-12-18 13:25:56-05:00">18 Dec 2016</time></header>
+<div class="content">And some more coverage: </div><hr>
+<a href="http://arstechnica.com/information-technology/2016/12/how-an-old-drawbridge-helped-microsoft-bring-sql-server-to-linux/">
+<h2>How an old Drawbridge helped Microsoft bring SQL Server to Linux</h2>
+<img src="https://cdn.arstechnica.net/wp-content/uploads/2016/12/drawbridge-760x380.jpg" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>

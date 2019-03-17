@@ -1,0 +1,37 @@
+---
+title: "G+: This article is based on Node.js, but the \u2026"
+date: "2017-05-28 14:31:27-0400"
+modified_time: "2017-05-28 14:31:27-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/NaRzGqFi4th
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-05-28T14:31:27-04:00" title="2017-05-28 14:31:27-04:00">28 May 2017</time></header>
+<div class="content">This article is based on Node.js, but the principles of error handling can apply to any language.<br><br>I&#39;m particularly fond of this advice: &quot;The best way to recover from programmer errors is to crash immediately.&quot;<br><br>(Programmer errors being &quot;bugs&quot; or mistakes in the code; not to be confused with operational errors that should be handled by good design)</div><hr>
+<a href="https://www.joyent.com/node-js/production/design/errors">
+<h2>Joyent | Error Handling</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-05-28T20:10:54-04:00" title="2017-05-28 20:10:54-04:00">28 May 2017</time></header>
+<div class="content">Good principle (separating the two types of error).<br><br>&quot;You should know why this pattern [try { asyncOperation(); } catch ()] does not work to handle errors.&quot;<br><br>Um, tell that to 2015. async/await is a thing now* and it&#39;s a pure joy.<br><br>*Don&#39;t know about Node, but it&#39;s a think in JavaScript so I hope Node has it.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-05-28T20:37:17-04:00" title="2017-05-28 20:37:17-04:00">28 May 2017</time></header>
+<div class="content">It&#39;s usually a fundamental principle taught in most computer science classes, but I&#39;ve seen plenty of people end up confused on the topic of error handling (e.g. logging every single (operational) error, trying to recover from programmer error or not having well defined behaviour on all plausible input). I also like that it enumerates a number of ways you can handle errors and some combinations that should well be avoided (e.g. don&#39;t mix sync/async error handling).<br><br>(I believe there may have been some push back against &quot;promises&quot; in Node.js by Joyent, but I&#39;ve not found their reasoning yet - so far it looks like a nice model for asynchronous programming though you have to be careful with locks/explicitly handling errors).<br><br>I really need to catch up a bit on the state of modern JavaScript.<br><br></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-05-28T23:43:03-04:00" title="2017-05-28 23:43:03-04:00">28 May 2017</time></header>
+<div class="content">I think the design of JavaScript unnecessarily blurs these lines. Imagine a world where undefined variable errors or type errors just crashed the page. The JavaScript engine crashes and the entire web page gets replaced with a sad tab. It would make lousy websites significantly worse, but oh boy would it decrease the number of programmer errors in the wild.<br><br>Promises are old tech. Async/await is the new hotness built on top of promises.<br><br>Pre-promises code:<br><br>someAsyncOperation(function(result) {<br>  // Do something with result.<br>}, function(error) {<br>  // Report error.<br>});<br><br>With promises (and arrows):<br>someAsyncOperation().then(result =&gt; {<br>  // Do something with result.<br>}).catch(error =&gt; {<br>  // Report error.<br>});<br><br>Not a huge improvement, but great because you can chain promises, etc.<br><br>Enter async/await:<br><br>try {<br>  result = await someAsyncOperation();<br>} catch (error) {<br>  // Report error.<br>  return;<br>}<br>// Do something with result.<br><br>OH YEAH.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-05-29T00:02:47-04:00" title="2017-05-29 00:02:47-04:00">29 May 2017</time></header>
+<div class="content">Didn&#39;t that used to happen with IE4? You got the little red X and everything came screeching to a halt. (I&#39;m not sure when that changed, but with the amount of assorted JavaScript on modern pages, I can see why that solution wouldn&#39;t scale).<br><br>Using async/await looks like a huge improvement over the callbacks (the later style looks at least superficially like Python&#39;s asyncio which I think also introduced async/await syntax recently). I&#39;m honestly surprised a language like JavaScript went for so long without something like this. X&#39;D</div></article>
+<hr>

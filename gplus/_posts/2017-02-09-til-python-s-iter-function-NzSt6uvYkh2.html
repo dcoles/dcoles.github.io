@@ -1,0 +1,27 @@
+---
+title: "G+: #TIL Python's iter function has a two argument \u2026"
+date: "2017-02-09 01:14:05-0500"
+modified_time: "2017-02-09 22:29:10-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/NzSt6uvYkh2
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-02-09T01:14:05-05:00" title="2017-02-09 01:14:05-05:00">09 Feb 2017</time></header>
+<div class="content"><a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23TIL/posts" >#TIL</a> Python&#39;s iter function has a two argument form. It&#39;s use allows you to convert a function that successively returns values until a certain sentinel value is returned into a Python iterator.<br><br><a rel="nofollow" target="_blank" href="https://docs.python.org/3/library/functions.html?highlight=iter#iter" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://docs.python.org/3/library/functions.html?highlight=iter#iter</a><br><br>A good example would be file.readline, which returns the empty string (&#39;&#39;) when the end of a file is reached.<br><br>for line in iter(f.readline, &#39;&#39;):<br>    print(line)<br><br>(Of course, since file-objects are already iterable, you can just directly iterate over lines that way, but this technique can be applied to any sentinel-style API)<br><br>Also be sure to check out these notes from Raymond Hettinger&#39;s &quot;Transforming Code into Beautiful, Idiomatic Python&quot; talk from pycon US 2013:<br><br><a rel="nofollow" target="_blank" href="https://gist.github.com/JeffPaine/6213790" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://gist.github.com/JeffPaine/6213790</a><br><br><a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23Python/posts" >#Python</a> <a rel="nofollow" class="ot-hashtag bidi_isolate" href="https://plus.google.com/s/%23iterator/posts" >#iterator</a></div><hr>
+<a href="https://docs.python.org/3/library/functions.html?highlight=iter#iter">
+<h2>2. Built-in Functions — Python 3.6.0 documentation</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 4</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-02-10T17:36:38-05:00" title="2017-02-10 17:36:38-05:00">10 Feb 2017</time></header>
+<div class="content">That&#39;s handy, and also TIL. But a pretty awful design to have a function where, by its own admission, &quot;the first argument is interpreted very differently depending on the presence of the second argument.&quot;<br><br>Probably should just be a separately named function.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-02-10T18:55:40-05:00" title="2017-02-10 18:55:40-05:00">10 Feb 2017</time></header>
+<div class="content">The Python built-ins are particularly bad for this. I know I&#39;ve run into a few other functions that could only be implemented in C (e.g. see the documented signatures of min, max, dict). Kind of frustrating since it means these functions are completely invisible to introspection functions and extremely hard to wrap properly.</div></article>
+<hr>

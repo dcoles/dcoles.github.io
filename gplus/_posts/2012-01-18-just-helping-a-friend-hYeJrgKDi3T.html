@@ -1,0 +1,33 @@
+---
+title: "G+: Just helping a friend diagnose a bandwidth use \u2026"
+date: "2012-01-18 01:24:52-0500"
+modified_time: "2012-01-18 01:24:52-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/hYeJrgKDi3T
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-01-18T01:24:52-05:00" title="2012-01-18 01:24:52-05:00">18 Jan 2012</time></header>
+<div class="content">Just helping a friend diagnose a bandwidth use problem. Using over 12GB of data/month with their mobile USB dongle, which seems odd when the most intensive use they have for it is Facebook games.<br><br>Anyone have recommendations for good per-application bandwidth monitors for Windows?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-01-18T12:34:22-05:00" title="2012-01-18 12:34:22-05:00">18 Jan 2012</time></header>
+<div class="content">Yeah. That was my feeling. I did a few back of the envelope calculations and was able to work out something was using the connection pretty solidly for the ~4 hours a day that the laptop was in use.<br><br>I&#39;m trying out the free version of <a rel="nofollow" target="_blank" href="http://www.netlimiter.com/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.netlimiter.com/</a> which seems to have a nice per-application statistics module. Sounds like it would be a good way of tracking exactly what&#39;s leaking.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-01-18T12:55:30-05:00" title="2012-01-18 12:55:30-05:00">18 Jan 2012</time></header>
+<div class="content">Nice. I was sure there had to be something built into Windows, but I only found the Windows MMC Performance snap-in. Resource monitor looks perfect.<br><br>I guess TCPView could also be a good option, except it&#39;s per-application/per-connection. But it does have a total bytes for each connection which is a bit more useful for profiling over an evenings use.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-01-18T20:26:55-05:00" title="2012-01-18 20:26:55-05:00">18 Jan 2012</time></header>
+<div class="content">I wonder if they track UDP traffic. Surely they wouldn&#39;t ignore it.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAkVyxp8Fr8lF8iDDV3dFhZVqt64mEIMJct6PSVWA=s64-c" style="border-radius: 50%"><strong><span class="author">Jeremy Visser</span></strong> <time datetime="2012-01-19T15:39:36-05:00" title="2012-01-19 15:39:36-05:00">19 Jan 2012</time></header>
+<div class="content">I would recommend NetWorx, which is a sort of friendlier netstat for Windows. Sadly proprietary, but then again most stuff on Windows is.</div></article>
+<hr>

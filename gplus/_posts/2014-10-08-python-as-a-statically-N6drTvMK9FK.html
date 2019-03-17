@@ -1,0 +1,37 @@
+---
+title: "G+: Python as a statically typed language? Yup, it's \u2026"
+date: "2014-10-08 10:33:15-0400"
+modified_time: "2014-10-08 10:33:15-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/N6drTvMK9FK
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-10-08T10:33:15-04:00" title="2014-10-08 10:33:15-04:00">08 Oct 2014</time></header>
+<div class="content">Python as a statically typed language? Yup, it&#39;s possible.<br><br>One of the lesser known features that was added in Python 3 was the ability to specify annotations for function arguments and return values. Unfortunately one thing it didn&#39;t specify was the form of these annotations.<br><br>Recently, JetBrains (the developers of the PyCharm IDE) and Jukka Lehtosalo have been collaborating on a type annotation system that can be used to perform robust static analysis on Python code.<br><br>The annotations are very similar to the kind that many developers already do in Python docstrings and can also be used for type hinting (see <a rel="nofollow" target="_blank" href="http://www.jetbrains.com/pycharm/webhelp/type-hinting-in-pycharm.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.jetbrains.com/pycharm/webhelp/type-hinting-in-pycharm.html</a> for a good example). For IDE developers it makes a huge amount of sense - without annotations providing meaningful Intelligent Code Completion (a.k.a IntelliSense) is very hit and miss.<br><br>Also take a look at <a rel="nofollow" target="_blank" href="http://blog.pirx.ru/media/files/2013/python-optional-typing/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://blog.pirx.ru/media/files/2013/python-optional-typing/</a> for a good background into why you would want static typing and some other developments in that area.</div><hr>
+<a href="http://www.mypy-lang.org/">
+<h2>mypy - Optional Static Typing for Python</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mDWiY_MSEUJZWpU3XI7I7jUFqRlv8onXJIXBmNBkw=s64-c" style="border-radius: 50%"><strong><span class="author">Tim Cuthbertson</span></strong> <time datetime="2014-10-09T05:33:42-04:00" title="2014-10-09 05:33:42-04:00">09 Oct 2014</time></header>
+<div class="content">I&#39;ve used TypeScript a bit, which sounds pretty similar (but for JS). It <i>is</i> useful, but not as much as you&#39;d hope. In a statically typed language you have a pretty good idea of what the compiler is proving for you, and when you&#39;re flouting its rules (e.g. casting). But a number of times with TypeScript I&#39;d find sneaky bugs where it looked like the code must be doing the right thing (the kind of issues a compiler would definitely tell you about, like the wrong argument types). Only to find out the types <i>were</i> wrong, but the compiler ignored it because it got tainted by some small omission or interaction with untyped code.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-10-09T10:39:15-04:00" title="2014-10-09 10:39:15-04:00">09 Oct 2014</time></header>
+<div class="content">I&#39;m kind of curious to see how it ends up working. One of the big motivations is improving code completion quality in IDEs (a few coworkers fans of PTVS and I like some of PyCharm&#39;s features). Even just working as a function parameter type-linter would be handy.<br><br>As for using static typing all the way through... will have to try it out and see what sort of value there is over the extra development effort.<br><br>One thing I do like is Protocols, which I think beats the hell out of using ABCMeta. I&#39;m told it&#39;s very similar to Interfaces in Go or TypeScript. For me they&#39;d be a nice way of formalizing contracts in a way that a tool could verify (as opposed to just throwing more documentation at it)<br><br> </div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mDWiY_MSEUJZWpU3XI7I7jUFqRlv8onXJIXBmNBkw=s64-c" style="border-radius: 50%"><strong><span class="author">Tim Cuthbertson</span></strong> <time datetime="2014-10-09T17:39:06-04:00" title="2014-10-09 17:39:06-04:00">09 Oct 2014</time></header>
+<div class="content">Ahh yep, those both sound pretty useful. And at least in the IDE case, you <i>notice</i> when it fails to type something properly, because you get crappy (or missing) suggestions ;)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-10-09T17:46:54-04:00" title="2014-10-09 17:46:54-04:00">09 Oct 2014</time></header>
+<div class="content">Just fill your code with assert(typeof(x, Foo)) until the IDE gets the drift. ;)<br><br>Actually, showing what the IDE has seen would be interesting. Or maybe filtering down types based on how you use it (you used send, probably typed as Sendable, socket.socket, ...)</div></article>
+<hr>

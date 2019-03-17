@@ -1,0 +1,17 @@
+---
+layout: default
+title: Google+ Archive
+permalink: /gplus/
+---
+
+<h1>Google+ Posts</h1>
+
+{% assign posts_by_year = site.categories.gplus | group_by_exp:"post", "post.date | date: '%Y'" %}
+{% for year in posts_by_year %}
+<h2>{{ year.name }}</h2>
+<ul>
+{% for post in year.items -%}
+  <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+{% endfor %}
+</ul>
+{% endfor %}

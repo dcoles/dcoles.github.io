@@ -1,0 +1,19 @@
+---
+title: "G+: Probably the most public outage due to the \u2026"
+date: "2017-01-03 23:01:00-0500"
+modified_time: "2017-01-03 23:01:00-0500"
+image: https://blog.cloudflare.com/content/images/2017/01/cloudflare_dns_control_panel.png.scaled500.png
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/2amdu4SKvDB
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-01-03T23:01:00-05:00" title="2017-01-03 23:01:00-05:00">03 Jan 2017</time></header>
+<div class="content">Probably the most public outage due to the NYE leap second.<br><br>This one is interesting since the root cause was due to the use of Go&#39;s built-in time function (<a rel="nofollow" target="_blank" href="https://golang.org/pkg/time/#Now" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://golang.org/pkg/time/#Now</a>) for measuring time intervals. If a time adjustment occurs (such as a leap-second or system change) then it&#39;s possible to end up with a negative duration. Most languages expose a monotonically increasing clock (e.g. CLOCK_MONOTONIC, System.nanoTime()) for exactly this purpose, but unfortunately this is not curently available in Go (see <a rel="nofollow" target="_blank" href="https://github.com/golang/go/issues/12914" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://github.com/golang/go/issues/12914</a>).</div><hr>
+<a href="https://blog.cloudflare.com/how-and-why-the-leap-second-affected-cloudflare-dns/">
+<h2>How and why the leap second affected Cloudflare DNS</h2>
+<img src="https://blog.cloudflare.com/content/images/2017/01/cloudflare_dns_control_panel.png.scaled500.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>

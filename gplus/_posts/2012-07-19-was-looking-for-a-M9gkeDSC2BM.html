@@ -1,0 +1,37 @@
+---
+title: "G+: Was looking for a quick and easy way \u2026"
+date: "2012-07-19 18:19:10-0400"
+modified_time: "2012-07-19 18:19:10-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/M9gkeDSC2BM
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-07-19T18:19:10-04:00" title="2012-07-19 18:19:10-04:00">19 Jul 2012</time></header>
+<div class="content">Was looking for a quick and easy way of pretty-printing a diff as a HTML file. Typically I&#39;ve used enscripten for all my pretty-printing purposes, but sadly the HTML output highlights added and removed lines the same colour.<br><br>While not quite as nice for doing printed output, it really shines for console and HTML use with a large selection of highlighters, preprocessors and colour themes. Be sure to check it out.</div><hr>
+<a href="http://pygments.org/">
+<h2>Pygments — Python syntax highlighter</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-07-20T21:42:02-04:00" title="2012-07-20 21:42:02-04:00">20 Jul 2012</time></header>
+<div class="content">Funny, this was my first solo open source project: <a rel="nofollow" target="_blank" href="http://sourceforge.net/projects/diffh/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://sourceforge.net/projects/diffh/</a><br>I wouldn&#39;t recommend it: it&#39;s written in C, probably quite buggy, and difficult to use. But there you go ;)<br><br>Does Pygments print diffs? Or does it just nicely syntax-highlight a context diff for HTML?<br><br>There&#39;s also Python&#39;s difflib:<br><a rel="nofollow" target="_blank" href="http://docs.python.org/library/difflib.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://docs.python.org/library/difflib.html</a><br>Which I&#39;m sure could easily be wrapped as a command-line tool.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-07-21T04:05:03-04:00" title="2012-07-21 04:05:03-04:00">21 Jul 2012</time></header>
+<div class="content">It has a few different outputs including console, 256-colour console, RTF, TeX and HTML (either as a HTML fragment or a full page). It&#39;s also quite extensible, so you can easily write new backends. About the only thing it doesn&#39;t do well is producing PDF or postscript for printing.<br><br>For example, you could use `pygmentize -ldiff` as an alternative to `cdiff`. Python also has a command line version of difflib included in the standard documentation which isn&#39;t bad.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-07-21T04:15:19-04:00" title="2012-07-21 04:15:19-04:00">21 Jul 2012</time></header>
+<div class="content"><i>&quot;About the only thing it doesn&#39;t do well is producing PDF or postscript for printing.&quot;</i><br>Isn&#39;t that Latex&#39;s job, after Pygments spits out a Tex file?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-07-21T04:20:56-04:00" title="2012-07-21 04:20:56-04:00">21 Jul 2012</time></header>
+<div class="content">Probably, yes (I wasn&#39;t able to get it working in my quick test at work). I still think Enscripten is a better tool for paper copies (pretty printing, 2-up, titles, colour, footers and a whole bunch of other nice print formatting options).</div></article>
+<hr>

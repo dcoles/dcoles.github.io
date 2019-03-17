@@ -1,0 +1,23 @@
+---
+title: "G+: As part of the great Christmas holiday tradition \u2026"
+date: "2011-12-22 01:38:31-0500"
+modified_time: "2011-12-22 01:38:31-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/EcZfF2h99YQ
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2011-12-22T01:38:31-05:00" title="2011-12-22 01:38:31-05:00">22 Dec 2011</time></header>
+<div class="content">As part of the great Christmas holiday tradition of fixing the family&#39;s computers, I&#39;ve been looking at a weird issue with the younger brother&#39;s PC. Occasionally it will crash in such a way that it&#39;s NIC floods the network with junk data in such a way that the entire local Ethernet fails (even pinging other hosts showed over 80% packet loss).<br><br>Unfortunately I&#39;ve not been able to capture exactly what it&#39;s sending - directly attaching my laptop shows a huge number of bytes being received, but they don&#39;t propagate up the stack far enough to be captured with Wireshark. I&#39;m guessing it&#39;s just spewing noise, but it doesn&#39;t seem to be affecting the rx_err count (though it does hive a large number of rx_mac_pause/rx_64_byte_packets).<br><br>Current solution seems to be reset the PC and everything is good, though I&#39;d be curious to see exactly what it was sending that could trash all network connectivity. Maybe time to go Google the network card details...</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAcmzuBmh6A9xwBQc1mcWM5m8xGUDLZOwQdzr1RlQ4=s64-c" style="border-radius: 50%"><strong><span class="author">Ben Hussey</span></strong> <time datetime="2011-12-22T06:40:30-05:00" title="2011-12-22 06:40:30-05:00">22 Dec 2011</time></header>
+<div class="content">tried it with a live cd to rule out the os/software?</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2011-12-22T06:48:39-05:00" title="2011-12-22 06:48:39-05:00">22 Dec 2011</time></header>
+<div class="content">It would be a good idea if it were more reproducible. So far it&#39;s only happened once in the two weeks I&#39;ve been back home. I was meaning to go digging through the crash logs to see if it gives any clues why the system hung - would be great if it was crashing 3 times a day like family said it was.</div></article>
+<hr>

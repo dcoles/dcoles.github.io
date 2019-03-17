@@ -1,0 +1,18 @@
+---
+title: "G+: Spent most of this evening trying to do \u2026"
+date: "2014-07-19 10:05:40-0400"
+modified_time: "2014-07-19 10:05:40-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/89RzR1XwkcR
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-07-19T10:05:40-04:00" title="2014-07-19 10:05:40-04:00">19 Jul 2014</time></header>
+<div class="content">Spent most of this evening trying to do a BIOS update on my Gigabyte BRIX after the latest kernel update caused a kernel panic on boot ( <a rel="nofollow" target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1341275" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1341275</a> ).<br><br>Turns out that doing a BIOS update is not exactly straight forward these days. No FDD, and even if there was the BIOS image is now 16MB!<br>Tried setting up syslinux+FreeDOS, but for some reason that refused to boot. Ended up using KVM and the FreeDOS installer to install onto a USB flash stick.<br><br>I have no idea what anyone technically skilled would be expected to do with a self-extracting executable (those things should really die) full of undocumented files:<br><br>$ ls ~/Downloads/brix-pro_bios_bxi7-4770r_f5<br>AFUDOS.exe  AfuEfix64.efi  flash.bat  fparts.txt  fpt.exe  HM87P.F5<br><br>At least they give you a batch file as a little bit of a hint. Really all that&#39;s needed is AFUDOS.exe and HM87P.F5. I guess AfuEfix64.efi  is a version you can run from the EFI shell (may have been an interesting alternative), though no idea why they give an alternative flash tool (fpt.exe).</div><hr>
+<a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1341275">
+<h2>Bug #1341275 “[Gigabyte GB-BXi7-4470R] Kernel panic in rtl8821ae...” : Bugs : “linux” package : Ubuntu</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div>

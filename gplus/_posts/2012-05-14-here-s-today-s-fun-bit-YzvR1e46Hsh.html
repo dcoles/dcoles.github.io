@@ -1,0 +1,23 @@
+---
+title: "G+: Here's today's fun bit of corner case behavior \u2026"
+date: "2012-05-14 01:14:44-0400"
+modified_time: "2012-05-14 01:14:44-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/YzvR1e46Hsh
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-05-14T01:14:44-04:00" title="2012-05-14 01:14:44-04:00">14 May 2012</time></header>
+<div class="content">Here&#39;s today&#39;s fun bit of corner case behavior in C:<br><br>int a = -2147483648;<br>printf(&quot;    a  = %d\n&quot;,  a);<br>printf(&quot;   -a  = %d\n&quot;, -a);<br><br>Running this prints:<br>    a  = -2147483648<br>   -a  = -2147483648<br><br>Wait what!? Who broke the number system?!<br><br>Why does this happen? Here&#39;s a hint: -2147483648 is INT_MIN on this system.<br><br>Due to the asymmetry of the 2s-complement number system, there&#39;s no positive 2147483648 int value and thus you can&#39;t represent a&#39;s negated value. Thus it overflows back to a (though technically this is undefined behavior).<br><br>What&#39;s the solution in this case? Either ensure the magnitude of your values are small enough never will try and negate INT_MIN or do something like `(a==INT_MIN ? INT_MAX : -a)`.<br><br>Want to see something a little more shocking? Try printing the result of `abs(a)`!</div></article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 2</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mChHUUNJ8VdWXhOPKLuY79iSE7ZPOlxiO1Hfl8ARQ=s64-c" style="border-radius: 50%"><strong><span class="author">Jonathan N</span></strong> <time datetime="2012-05-14T03:39:15-04:00" title="2012-05-14 03:39:15-04:00">14 May 2012</time></header>
+<div class="content">You might also like <a rel="nofollow" target="_blank" href="http://www.exploringbinary.com/java-hangs-when-converting-2-2250738585072012e-308/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.exploringbinary.com/java-hangs-when-converting-2-2250738585072012e-308/</a></div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-05-14T03:59:03-04:00" title="2012-05-14 03:59:03-04:00">14 May 2012</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/111759828316340266672" oid="111759828316340266672" >Jonathan Newnham</a></span> Nice! Floating point numbers are equal parts brilliance and black magic, so given how much trouble integer arithmetic causes us poor programmers I&#39;m surprised every program with a float or a double hasn&#39;t caught fire yet!</div></article>
+<hr>

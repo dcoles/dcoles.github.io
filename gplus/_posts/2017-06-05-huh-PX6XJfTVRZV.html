@@ -1,0 +1,47 @@
+---
+title: "G+: Huh"
+date: "2017-06-05 10:38:25-0400"
+modified_time: "2017-06-05 10:38:25-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/PX6XJfTVRZV
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-06-05T10:38:25-04:00" title="2017-06-05 10:38:25-04:00">05 Jun 2017</time></header>
+<div class="content">Huh. I always knew that `list + tuple` was a TypeError in Python, but didn&#39;t know `list += tuple` (like `list.extend(tuple)`) would work.<br><br>Weirdly `tuple += list` is a TypeError, but `tuple += tuple2` is OK.<br>(however it creates a new tuple like `tuple = tuple + tuple2`)<br><br>(Cross-posted from <a rel="nofollow" target="_blank" href="https://twitter.com/davidcoles/status/871735636058923009" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://twitter.com/davidcoles/status/871735636058923009</a>)</div></article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-06-05T21:03:27-04:00" title="2017-06-05 21:03:27-04:00">05 Jun 2017</time></header>
+<div class="content">Gross. Python&#39;s list += is completely broken anyway and should be avoided: it mutates the list.<br><br>That&#39;s very counter-intuitive given that + creates a copy of the list. x += y should always have the same semantics as x = x + y. (It could be implemented with a fast-path but it should have the same semantics.)<br><br>So tuple += tuple2 is fine, list += list_or_tuple is broken.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-06-05T22:42:09-04:00" title="2017-06-05 22:42:09-04:00">05 Jun 2017</time></header>
+<div class="content">I&#39;m a little on the fence about it. On one hand, being nice syntax for in-place operations is sometimes quite useful (the rational in PEP-203 was matrix operations) and I believe std::string overloads += for append. On the other hand it&#39;s surprising given that most people reasonably assume x += y is short for x = x + y (where x is evaluated only once) and having an operator that <b>may</b> operate in place depending on some deep voodo like the presence or absence of <i>_iadd_</i> is a recipe for disaster.<br></div><hr>
+<a href="https://www.python.org/dev/peps/pep-0203/">
+<h2>PEP 203 -- Augmented Assignments</h2>
+<img src="https://www.python.org/static/opengraph-icon-200x200.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-06-05T22:51:07-04:00" title="2017-06-05 22:51:07-04:00">05 Jun 2017</time></header>
+<div class="content">&gt; I believe std::string overloads += for append<br><br>Yes but C++ is totally different. In C++ (like C) everything is by value unless explicitly dereferenced.<br><br>In Python, if you have a list variable x and you write &quot;x += y&quot;, there is an <b>implicit dereference</b> causing <b>the list object pointed to by x</b> to be modified. That&#39;s completely different to &quot;x = x + y&quot; which assigns x to point at a new object.<br><br>In C++, if you have a variable std::string or std::vector x and you write &quot;x += y&quot;, there is no dereference, it modifies the variable x by value. This has the exact same semantics as &quot;x = x + y&quot; (but probably better performance, unless the compiler optimizes the latter somehow). Now it&#39;s true that there could be any number of pointers or references pointing at &amp;x, but those are pointers to the <b>variable x</b>, so they get updated when x changes no matter which operator is used. Even if x was an int, and you used &quot;x += y&quot; or &quot;x = x + y&quot;, pointers pointing at x would get updated all the same. Thus C++ has totally consistent semantics between the short and long form of += as well as for all different types.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2017-06-06T00:24:47-04:00" title="2017-06-06 00:24:47-04:00">06 Jun 2017</time></header>
+<div class="content">Because of operator overloading, operators aren&#39;t always by-value like they are in C. Specifically you can also overload compound assignment operators, so += can differ from + followed by assignment. You can see the difference in the assembly code: The copy version creates a temporary string and then copies the value to <b>x</b> and frees the temporary, while the inplace version calls ::append.  <br><br>That said, it&#39;s much harder to do accidentally since the type system makes it pretty clear when something is being done in-place and when a new copy is being made. And it&#39;s possible if the compiler is smart enough and can see the full lifetime of the object it might be able use an inplace implementation as-if it was doing a copy (as an optimization).</div><hr>
+<a href="https://godbolt.org/g/8BKUEI">
+<h2>Compiler Explorer - C++</h2>
+</a>
+</article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2017-06-06T00:48:10-04:00" title="2017-06-06 00:48:10-04:00">06 Jun 2017</time></header>
+<div class="content">&gt; Because of operator overloading, operators aren&#39;t always by-value like they are in C.<br><br>I&#39;m talking about <i>conceptually</i> not literally. Of course with operator overloading I can make += perform subtraction while + performs multiplication. But the semantics of those operators is consistent in the standard library which is as good as you can expect in a language with operator overloading. That the standard library is consistent strongly encourages other code to follow that rule as well.<br><br>Unlike Python where there is no well-understood semantics for += due to list and str/tuple disagreeing.<br><br>As for looking at the assembly, well sure it generates different code in C++ but it has the same semantics. I don&#39;t think there is any case for std::string or std::vector where the <i>behaviour</i> of += is distinguishable from +, other than if you use .data() and compare the internal pointers (but that&#39;s exposing implementation details by design).</div></article>
+<hr>

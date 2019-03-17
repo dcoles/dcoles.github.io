@@ -1,0 +1,29 @@
+---
+title: "G+: Things people at SCALE 11x suggested I take \u2026"
+date: "2013-02-25 11:54:19-0500"
+modified_time: "2013-02-25 11:54:19-0500"
+image: http://cukes.info/images/feature.png
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/5VUdDA3TcTM
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-02-25T11:54:19-05:00" title="2013-02-25 11:54:19-05:00">25 Feb 2013</time></header>
+<div class="content">Things people at SCALE 11x suggested I take a look at:<br><br>- <a rel="nofollow" target="_blank" href="http://cukes.info/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://cukes.info/</a> - Cucumber (Behavior Driven Development tool)<br>- <a rel="nofollow" target="_blank" href="http://monitorstxt.org/" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://monitorstxt.org/</a> - lazy web app monitoring<br>- <a rel="nofollow" target="_blank" href="https://github.com/stskeeps/libhybris" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://github.com/stskeeps/libhybris</a> - A wrapper for loading binary only Android drivers on glibc based Linux systems<br>- Check the state of OverlayFS (someone suggested it might have been merged into the kernel now).<br>- <a rel="nofollow" target="_blank" href="http://www.amazon.com/Captive-Audience-Telecom-Industry-Monopoly/dp/0300153139" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://www.amazon.com/Captive-Audience-Telecom-Industry-Monopoly/dp/0300153139</a> Suggested reading on telecom monopolies.</div><hr>
+<a href="http://cukes.info/">
+<h2>Cucumber - Making BDD fun</h2>
+<img src="http://cukes.info/images/feature.png" style="max-width: 530px; max-height: 530px">
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 1</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mDWiY_MSEUJZWpU3XI7I7jUFqRlv8onXJIXBmNBkw=s64-c" style="border-radius: 50%"><strong><span class="author">Tim Cuthbertson</span></strong> <time datetime="2013-02-25T18:30:46-05:00" title="2013-02-25 18:30:46-05:00">25 Feb 2013</time></header>
+<div class="content">My opinionated opinions on cucumber:<br><br> - BDD is (largely) good for integration / acceptance testing<br> - Cucumber, with its whole language parsing regexy madness, feels overblown most of the time, and gets unmanageable quickly in bigger projects. It&#39;s really hard to navigate / organise / refactor steps.<br> - There are alternatives that give you the benefits of BDD with the benefits of actually being code, sacrificing the ability for business people to write steps - see Steak and Pea (I wrote Pea when I was annoyed with Cucumber, it&#39;s not really maintained but it shows the idea)<br> - The idea of &quot;business people writing steps&quot; is usually rubbish anyway. They might as well write it in prose and a developer convert it to code, because you generally can&#39;t write valid cucumber scenarios without a keen knowledge of how the steps are actually implemented. A good DSL should be just as readable to non-developers as Cucumber, if you ignore all the dots and brackets ;)<br> - Running each line as it&#39;s encountered without any richer ability to delimit or contextualize things like you might in code really screws you up when you want to describe state in more than one step. So you either have to<br>(1) make huge unwieldy steps (&quot;I have an inactive user with a profile and a phone number of &quot;blah&quot; and address of &quot;blah&quot; [...]&quot;) so that you have a complete and valid state when you create your data, or<br>(2) you have a series of small, composable steps that just register individual parts of the complete state, followed by a relatively-meaningless &quot;now do it&quot; step to actually perform the setup, or<br>(3) you invent clever hacks that accumulate state in all the &quot;Given&quot; steps, and validate / execute it on the first &quot;When&quot; step. That last one was fun to do, but way more effort than it was worth ;)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-02-26T02:03:36-05:00" title="2013-02-26 02:03:36-05:00">26 Feb 2013</time></header>
+<div class="content">Thanks Tim! I hadn&#39;t actually taken a proper look at Cucumber (I hadn&#39;t even seen the syntax until today!) I think most people consider excessively free-form languages to generally be a bad idea (looking at you COBOL).<br><br>I actually quite like the look of Pea, but I might just be biased as both a programmer and being on the Python side of the scripting language fence. :)<br><br>Certainly planning on doing a bit more reading on BDD - anything that helps people get a clearer idea on writing tests is a good thing!</div></article>
+<hr>

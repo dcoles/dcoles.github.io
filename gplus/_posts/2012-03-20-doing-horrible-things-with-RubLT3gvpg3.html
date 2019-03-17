@@ -1,0 +1,27 @@
+---
+title: "G+: Doing horrible things with Python's ctypes and the \u2026"
+date: "2012-03-20 04:02:41-0400"
+modified_time: "2012-03-20 04:02:41-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/RubLT3gvpg3
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-20T04:02:41-04:00" title="2012-03-20 04:02:41-04:00">20 Mar 2012</time></header>
+<div class="content">Doing horrible things with Python&#39;s ctypes and the new POSIX Alarm Timers interface in Linux 3.0. Upside: I can make my computer resume from suspend automatically using Python!</div><hr>
+<a href="http://dcoles-net.blogspot.com/2012/03/posix-alarm-timers-in-python.html">
+<h2>POSIX Alarm Timers in Python</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 4</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2012-03-20T19:38:36-04:00" title="2012-03-20 19:38:36-04:00">20 Mar 2012</time></header>
+<div class="content">Nice. I do share your concern with ctypes. It&#39;s pretty poor because of the need to duplicate header information. What we need is something that will parse (at runtime, if necessary) a C header file and produce a module object filled with ctypes objects, such as functions (for functions and parameterised macros), ctypes struct definitions (for structs) and values (for 0-argument macros). The hardest part would be producing the macros, because you would need a full C compiler. Maybe it would only support simple expressions -- that would do for a start.<br><br>There&#39;s a big advantage in using the old C/C++ API for writing Python extension modules. Yes, it&#39;s messy, painful, and less portable*, but it&#39;s often worth it for type safety and being able to reuse header files.<br><br>*Though I believe PyPy has it working now.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2012-03-21T02:12:08-04:00" title="2012-03-21 02:12:08-04:00">21 Mar 2012</time></header>
+<div class="content">The closest I&#39;ve seen it ctypes_configure. Under the hood it uses Python distutils (same scripts that compile your Python C modules) so in theory it should work on all platforms that it supports. Of course it requires a compiler and development headers, but then that&#39;s just how C works. Being able to do this at runtime and having it cached (and able to auto-regenerate as necessary) would go a long way to making ctypes one of the most amazing modules in Python.<br><br>On the type-safety side, ctypes does let you specify an exact type signature (something I didn&#39;t know for a long time), but it&#39;s once again more duplication.<br><br>PyPy&#39;s C-API&#39;s seems pretty advanced these days, but still not up to using packages like NumPy and SciPy (though to get the biggest advantage out of PyPy&#39;s JIT you&#39;d probably want to rewrite large parts in Python or RPython). C Modules are basically the only thing that stops me using PyPy over CPython these days.</div></article>
+<hr>

@@ -1,0 +1,52 @@
+---
+title: "G+: C and C++ are almost interchangeable"
+date: "2011-11-15 00:39:54-0500"
+modified_time: "2011-11-15 00:39:54-0500"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/hLB88j1Uqq4
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2011-11-15T00:39:54-05:00" title="2011-11-15 00:39:54-05:00">15 Nov 2011</time></header>
+<div class="content">C and C++ are almost interchangeable. Except when they&#39;re not. You&#39;d also think it would take less than 10 years to incorporate some of these features into the C++ standard.</div><hr>
+<a href="http://dcoles-net.blogspot.com/2011/11/c-is-not-subset-of-c.html">
+<h2>C is not a subset of C++ | David's Software Blog</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 3</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCDsi8qZrpayAoUmdOk547u7YKlE2cpyVymYz1pKM0=s64-c" style="border-radius: 50%"><strong><span class="author">Abdulla Kamar</span></strong> <time datetime="2011-11-15T01:56:48-05:00" title="2011-11-15 01:56:48-05:00">15 Nov 2011</time></header>
+<div class="content">Initialiser lists aren&#39;t a superficial change, and there was a freeze period put on major changes to C++ for compilers to catch up. (Which they later realised was a mistake, and now require implementations of features before they will consider them.)<br><br>It goes both ways, it took C a long time to pick up features from C++ and sometimes they&#39;ve decided not to. Also, some things just don&#39;t make sense for C++ to adopt, like VLAs or complex numbers, due to better C++ equivalents.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2011-11-15T02:04:28-05:00" title="2011-11-15 02:04:28-05:00">15 Nov 2011</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/105501897291965309991" oid="105501897291965309991" >Abdulla Kamar</a></span> I disagree with your second paragraph.<br><br>&quot;It goes both ways, it took C a long time to pick up features from C++ and sometimes they&#39;ve decided not to.&quot;<br>This isn&#39;t a valid defence of C++, since nobody has ever had the remotest possibility of porting C++ code to C. Of course very few C++ features have been picked up by C. On the other hand, C++ is supposed to be a near-superset of C. Ideally, you should be able to take C code and run it as C++. Obviously there will always be trouble if you have variables called &#39;class&#39; or &#39;new&#39;, but other than that, it should work. That is the whole strength of C++ is its immense level of backwards compatibility with C.<br><br>&quot;Also, some things just don&#39;t make sense for C++ to adopt, like VLAs or complex numbers, due to better C++ equivalents.&quot;<br>That&#39;s besides the point. Since C++ should be a superset of C. Support VLAs and complex numbers, <i>and</i> provide a better equivalent. Doesn&#39;t make sense for Java, but it makes sense for C++ which would ensure C code is forwards compatible with C++. By this logic, you could say &quot;C++ shouldn&#39;t have POD types since it has classes&quot; or &quot;C++ shouldn&#39;t have function pointers since it has std::function.&quot;<br><br>I realise that you could counter both of these arguments by saying &quot;but C++ is not <i>supposed</i> to be a superset of C, you&#39;re just imposing that on the language -- it is a language in its own right.&quot; But I don&#39;t buy that. A very big reason for C++&#39;s success is that people were able to take C programs and C++ify them. (For instance, the fact that there is no need to write C++ bindings for C libraries unless you really want to C++ify them -- calling them just works.)</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCDsi8qZrpayAoUmdOk547u7YKlE2cpyVymYz1pKM0=s64-c" style="border-radius: 50%"><strong><span class="author">Abdulla Kamar</span></strong> <time datetime="2011-11-15T02:07:11-05:00" title="2011-11-15 02:07:11-05:00">15 Nov 2011</time></header>
+<div class="content">C++ 98 was meant to be a superset of ANSI C --- since then they have diverged. There have been attempts at unifying <i>parts</i>, but fundamentally they&#39;re incompatible now. So yes, that is the state of things now, and most C99-only features aren&#39;t exposed at an API level.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2011-11-15T02:24:27-05:00" title="2011-11-15 02:24:27-05:00">15 Nov 2011</time></header>
+<div class="content">I&#39;m worried that it&#39;s only going to get worse. There&#39;s a good justification for writing libraries in C since it&#39;s often considered the lowest common denominator. And C++ being able to &quot;just work&quot; with C is a huge feature. But things are certainly becoming muddier especially when people start writing APIs that use C99-only features (see <a rel="nofollow" target="_blank" href="http://ffmpeg.org/pipermail/ffmpeg-devel/2010-May/095488.html" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://ffmpeg.org/pipermail/ffmpeg-devel/2010-May/095488.html</a> for a recent example).<br><br>I&#39;m a huge fan of &lt;stdint.h&gt; and think it&#39;s quite sensible to use it in public headers, but if it means you can&#39;t compile the code with a C++ compiler... Really I don&#39;t want to get to a point where we have to write explicit bindings for C++ just to use a C library.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCDsi8qZrpayAoUmdOk547u7YKlE2cpyVymYz1pKM0=s64-c" style="border-radius: 50%"><strong><span class="author">Abdulla Kamar</span></strong> <time datetime="2011-11-15T02:31:07-05:00" title="2011-11-15 02:31:07-05:00">15 Nov 2011</time></header>
+<div class="content">That seems to be more an issue with a version of the header. There&#39;s even a &lt;cstdint&gt;, so it&#39;s not fundamentally incompatible.<br><br>I do agree though, incompatibilities are a worry, but so far they haven&#39;t proven too much of an issue.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mCEA7ivgbMJoT5vzemXyJbIT8WzLMzrlCm62QNjGVo=s64-c" style="border-radius: 50%"><strong><span class="author">Reuben Bond</span></strong> <time datetime="2011-11-15T04:30:19-05:00" title="2011-11-15 04:30:19-05:00">15 Nov 2011</time></header>
+<div class="content">C++11 takes steps to converge on compatibility. There is also C11, now. Hopefully it improves compatibility further.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBJAad8DjbntuW4RZOeco9N0CfBzRPxufav3Q19Zw8=s64-c" style="border-radius: 50%"><strong><span class="author">Matt Giuca</span></strong> <time datetime="2011-11-15T04:35:11-05:00" title="2011-11-15 04:35:11-05:00">15 Nov 2011</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/105501897291965309991" oid="105501897291965309991" >Abdulla Kamar</a></span> That is what <i>happened</i>, but it isn&#39;t <i>good</i>. I think we were arguing that C++ should be keeping up to date with C features. I don&#39;t see why they&#39;re &quot;fundamentally incompatible&quot; -- just that they simply didn&#39;t enable those features.<br><br><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/104568121256910495765" oid="104568121256910495765" >David Coles</a></span> At least it should be the case that you can call C code from C++ -- as long as you compile the C99 code with a C compiler and the C++ code with a C++ compiler, they should still be able to call each other as long as the headers use extern &quot;C&quot; and don&#39;t use any C99 features in the interface.</div></article>
+<hr>

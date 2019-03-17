@@ -1,0 +1,17 @@
+---
+title: "G+: Did you know that you can use \"*\" \u2026"
+date: "2014-07-30 23:15:14-0400"
+modified_time: "2014-07-30 23:15:14-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/du88zD81tYv
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2014-07-30T23:15:14-04:00" title="2014-07-30 23:15:14-04:00">30 Jul 2014</time></header>
+<div class="content">Did you know that you can use &quot;*&quot; as a host or service argument to getaddrinfo? I certainly didn&#39;t!<br><br>In glibc, it&#39;s treated as equivalent to a NULL argument. Looks like this behaviour has been around for at least a decade or more. Not in the man page or the POSIX.1-2008 standard, not supported by <a rel="nofollow" target="_blank" href="http://www.musl-libc.org" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">www.musl-libc.org</a> and not supported on Windows.<br><br>I&#39;d would probably recommend relying on said behaviour if you want to have any degree of portability!<br><br>(Sadly, I can see the reason behind this - sometimes it&#39;s hard to pass an explicit NULL, especially for string arguments. Using &quot;&quot; doesn&#39;t work in this case)</div><hr>
+<a href="http://repo.or.cz/w/glibc.git/blob/9a869d822025be8e43b78234997b10bf0cf9d859:/sysdeps/posix/getaddrinfo.c#l2319">
+<h2>Public Git Hosting - glibc.git/blob - sysdeps/posix/getaddrinfo.c</h2>
+</a>
+</article>
+<hr>

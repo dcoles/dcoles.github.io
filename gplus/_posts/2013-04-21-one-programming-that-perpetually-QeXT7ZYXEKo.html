@@ -1,0 +1,33 @@
+---
+title: "G+: One programming that perpetually bothers me is network \u2026"
+date: "2013-04-21 01:25:44-0400"
+modified_time: "2013-04-21 01:25:44-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/QeXT7ZYXEKo
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-04-21T01:25:44-04:00" title="2013-04-21 01:25:44-04:00">21 Apr 2013</time></header>
+<div class="content">One programming that perpetually bothers me is network protocol parsing. While not to hard to handle one or two special cases, a general approach is much more difficult. To confuse the mater, you quickly run into issues like message serialization and handling asynchronous communication.<br><br>Initially I had tried representing protocols as a nested structure (like Russian dolls), which works for representing simple packet structures, but falls apart when confronted with situations like HTTP where one HTTP message might be represented by one or more TCP packets (fragmentation) or maybe sharing a TCP packet with other HTTP messages (packing), as well as having the issue of having no where to store protocol state.<br><br>Currently the best way I&#39;m seen of doing protocol parsing is to think of it as a  stack of protocol layers where the lower layers refine information before parsing it higher layers. This is the approach that Twisted takes where by a Protocol consumes bytes via the `dataReceived(bytes)` method until enough data has been received to pass the data to one or my higher level layers.<br><br>If you&#39;ve seen better ways of thinking about network protocols, I&#39;d love to hear about it.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAuD-sq89xg3R1iUOnK4rHfyqmn__3BROqS3P2H2w=s64-c" style="border-radius: 50%"><strong><span class="author">Patrick McLean</span></strong> <time datetime="2013-04-21T06:18:34-04:00" title="2013-04-21 06:18:34-04:00">21 Apr 2013</time></header>
+<div class="content">Layers is the classical/standard way to think about network protocols.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-04-21T19:11:46-04:00" title="2013-04-21 19:11:46-04:00">21 Apr 2013</time></header>
+<div class="content">Well, the layers aren&#39;t really the confusing part. It&#39;s the messages that go between the layers and creating a suitable class representation of the whole thing.<br><br>For instance, how does the TCP layer know to pass messages for port 80 up to the HTTP layer. Probably either need some sensible defaults and/or a way of adding a higher layers to handle particular ports.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mAx1nBjG19CrXwq-W38nB0Uv18uWnlpppPB4IKY=s64-c" style="border-radius: 50%"><strong><span class="author">David Watt</span></strong> <time datetime="2013-04-22T06:32:38-04:00" title="2013-04-22 06:32:38-04:00">22 Apr 2013</time></header>
+<div class="content">Is HTTP a layer now? I guess theoretically it is, but there&#39;s no requirement that TCP traffic for port 80 be interpreted as such. You decide you want to interpret port 80 traffic as HTTP traffic when you run a web server. Hence, you assume browsers communicate as such, &amp; throw out everything that doesn&#39;t conform.<br>There are conventions, but no defaults, I&#39;d say.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-04-22T11:23:56-04:00" title="2013-04-22 11:23:56-04:00">22 Apr 2013</time></header>
+<div class="content"><span class="proflinkWrapper"><span class="proflinkPrefix">+</span><a class="proflink bidi_isolate" href="https://plus.google.com/109535318600351013044" oid="109535318600351013044" >David Watt</a></span> In the Internet Protocol suite, HTTP is considered part of the application layer, but I&#39;m more talking about the more general case of &quot;protocol layering&quot; than the OSI or IP models.<br><br>You can still can think of it as a layer (for example you can put XMPP on top of HTTP) to add some higher level feature, though they&#39;re not as formalized.<br><br>As for defaults, you&#39;re exactly right. There&#39;s no hard requirement on mappings, just it does help a lot for interoperability if you follow the IANA associations. Even at the Transport and Internet layers there&#39;s nothing special about these protocols except that they&#39;re built into the kernel - infact you can even use IP_RAW to add your own Transport layer protocol (often done for userspace protocol implementaions or handling more obscure protocols).</div></article>
+<hr>

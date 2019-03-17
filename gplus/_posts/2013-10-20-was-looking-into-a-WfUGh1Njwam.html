@@ -1,0 +1,27 @@
+---
+title: "G+: Was looking into a way of debugging already-running \u2026"
+date: "2013-10-20 03:47:21-0400"
+modified_time: "2013-10-20 03:47:21-0400"
+layout: post
+gplus_orig_url: https://plus.google.com/+DavidColes/posts/WfUGh1Njwam
+---
+
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-10-20T03:47:21-04:00" title="2013-10-20 03:47:21-04:00">20 Oct 2013</time></header>
+<div class="content">Was looking into a way of debugging already-running Python programs and stumbled across this feature. Turns out gdb 7 has Python scripting support and some wonderful folks have added support for Python introspection. This means you can fire up gdb on the recalcitrant process and `py-bt` to get a nice Python backtrace. It&#39;ll also pretty-print Python objects if you inspect them in the debugger.<br><br>On Debian/Ubuntu just install the `python-dbg` package.<br>Sadly on Ubuntu 13.10 there is a bug &lt;<a rel="nofollow" target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/gdb/+bug/1241668" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">https://bugs.launchpad.net/ubuntu/+source/gdb/+bug/1241668</a>&gt; where gdb is linked against libpython3.3 even though the scripts only supports Python 2.x. Whoops.</div><hr>
+<a href="http://docs.python.org/devguide/gdb.html">
+<h2>23. gdb Support — Python Developer's Guide</h2>
+</a>
+</article>
+<hr>
+<div class="plusOnes" style="text-align: right"><strong>(+1's)</strong> 4</div><article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-10-20T04:55:53-04:00" title="2013-10-20 04:55:53-04:00">20 Oct 2013</time></header>
+<div class="content">I&#39;ve added a quick patch for Python 3 support, so you can use this with Ubuntu 13.10.</div></article>
+<hr>
+<article>
+<header>
+<img src="https://lh3.googleusercontent.com/a-/AAuE7mBMYQroHG03cfOJQ-Lu30rOA8T35GOl9fQUFQwpVeU=s64-c" style="border-radius: 50%"><strong><span class="author">David Coles</span></strong> <time datetime="2013-10-20T21:41:47-04:00" title="2013-10-20 21:41:47-04:00">20 Oct 2013</time></header>
+<div class="content">Urgh. Ok, maybe not quite so simple. I&#39;d forgotten how much a pain in the arse Python2/3 compatible code is when working with bytes, string and unicode.<br><a rel="nofollow" target="_blank" href="http://bugs.python.org/issue19308" class="ot-anchor bidi_isolate" jslog="10929; track:click" dir="ltr">http://bugs.python.org/issue19308</a></div></article>
+<hr>
