@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>☎️</title>
+</head>
+<body>
+  <p>☎️ <code><a id="link">&hellip;</a></code></p>
+  <p style="font-size: x-small">Usage: Add phone number to URL (e.g. <a href="#+1-760-706-7425">#+1-760-706-7425</a>)</p>
+  <script>
+    function update() {
+      var tel = getTel();
+      if (tel) {
+        var url = "tel:" + tel;
+
+        // Update title
+        document.title = "☎️ " + tel;
+
+        // Update link
+        var link = document.getElementById("link");
+        link.href = url;
+        link.text = tel;
+
+        // Redirect to "tel:" URL
+        window.location = url;
+      }
+    }
+
+    function getTel() {
+      return decodeURIComponent(window.location.hash.slice(1));
+    }
+
+    window.addEventListener("load", update);
+    window.addEventListener("hashchange", update);
+  </script>
+</body>
+</html>
