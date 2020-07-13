@@ -23,20 +23,26 @@
   <script>
     function update() {
       var tel = getTel();
-      if (tel) {
-        var url = "tel:" + tel;
-
-        // Update title
-        document.title = "☎️ " + tel;
-
-        // Update link
-        var link = document.getElementById("link");
-        link.href = url;
-        link.text = tel;
-
-        // Redirect to "tel:" URL
-        window.location = url;
+      if (!tel) {
+        if (!window.location.hash) {
+          // Always show "#"
+          window.location = "#";
+        }
+        return;
       }
+
+      var url = "tel:" + tel;
+
+      // Update title
+      document.title = "☎️ " + tel;
+
+      // Update link
+      var link = document.getElementById("link");
+      link.href = url;
+      link.text = tel;
+
+      // Redirect to "tel:" URL
+      window.location = url;
     }
 
     function getTel() {
