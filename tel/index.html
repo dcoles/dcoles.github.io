@@ -5,11 +5,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
   <title>☎️</title>
+  <style>
+    h1 { font-size: large; }
+    p.usage { font-size: small; }
+    body { margin: 8px; font-family: 'Raleway', sans-serif; }
+
+    #about { position: absolute; bottom: 0; right: 0; padding: 8px; font-size: x-small; }
+    #about img { height: 1.2em; vertical-align: text-bottom; padding-right: 0.2em; }
+  </style>
 </head>
 <body>
-  <p>☎️ <code><a id="link">&hellip;</a></code></p>
-  <p style="font-size: x-small">Usage: Add phone number to URL (e.g. <a title="National Rick Astley Hotline (@pjf)" href="#+1-760-706-7425">#+1-760-706-7425</a>)</p>
+  <h1>☎️ <code><a id="link">&hellip;</a></code></h1>
+  <p class="usage">Usage: Add phone number to URL (e.g. <a title="National Rick Astley Hotline (@pjf)" href="#+1-760-706-7425">#+1-760-706-7425</a>)</p>
+  <div id="about"><a href="https://github.com/dcoles/dcoles.github.io/tree/master/tel"><img alt="GitHub mark" src="/images/github-mark-light.svg">GitHub</a></div>
   <script>
     function update() {
       var tel = getTel();
