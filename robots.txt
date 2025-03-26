@@ -1,6 +1,6 @@
 Sitemap: https://dcoles.net/sitemap.xml
 
-# See https://github.com/ai-robots-txt/ai.robots.txt
+# ai-robots-txt/ai.robots.txt@5e7c3c432f8bad894363c7289b888328f98963f3
 User-agent: AI2Bot
 User-agent: Ai2Bot-Dolma
 User-agent: Amazonbot
